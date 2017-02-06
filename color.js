@@ -40,7 +40,7 @@ for(var i=0 ; i<6; i++)
         }
         });
 }
-
+document.getElementById("h2").innerHTML=data[correctColor].redVal+<br>data[correctColor].blueVal+<br>data[correctColor].greenVal;
 rField.textContent=data[correctColor].redVal;
 bField.textContent=data[correctColor].blueVal;
 gField.textContent=data[correctColor].greenVal;

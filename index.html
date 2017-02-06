@@ -7,7 +7,6 @@
     </head>
     <body>
         <h1 class="header bounceInDown animated">The Color Game</h1>
-        <div class="body-container">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12 bg-warning jello animated">CAN YOU GUESS WHICH COLOR IS FORMED WHEN THESE COLORS ARE MIXED?</div>
@@ -16,21 +15,30 @@
                     <div class="col-lg-4 bg-info bounceInRight animated"><p>Blue:<strong ><span id="b"></span>%</strong></p>
                     </div>
                 </div>
-
-            <div class="btn"><button class="button btn btn-success flip animated" type="reset" onClick="history.go(0)" onClick="window.location.reload()" value="New Combo" style="color:white; font-weight: bold">START AGAIN</button></div>
-            <div class="message"><samp><h2 class="text"></h2></samp></div>
-            <div class="square-container">
-                <div class="square btn btn-primary"></div>
-                <div class="square btn btn-primary"></div>
-                <div class="square btn btn-primary"></div>
-                <div class="square btn btn-primary"></div>
-                <div class="square btn btn-primary"></div>
-                <div class="square btn btn-primary"></div>
+                <div class="button-container"><br>
+                    <div class="row">
+                        <div class="col-lg-4"></div>
+                        <div class="col-lg-4"><button class="button btn btn-success flip animated" type="reset" onClick="history.go(0)" onClick="window.location.reload()">START AGAIN</button></div>
+                        <div class="col-lg-4"></div>
+                    </div>
+                </div>
+                <div class="message"><samp><h2 class="text"></h2></samp></div>
+                <div class="square-container">
+                    <div class="row">
+                        <div class="col-lg-1"></div>
+                        <div class="col-lg-10">
+                            <div class="square btn btn-primary"></div>
+                            <div class="square btn btn-primary"></div>
+                            <div class="square btn btn-primary"></div>
+                            <div class="square btn btn-primary"></div>
+                            <div class="square btn btn-primary"></div>
+                            <div class="square btn btn-primary"></div>
+                        </div>
+                        <div class="col-lg-1"></div>
+                    </div>
+                </div>
             </div>
-        </div>
-        </div>
-        </div>
-        <script src="color.js" type="text/javascript"></script>
+    <script src="color.js" type="text/javascript"></script>
    </body>
 
 </html>

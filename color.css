@@ -11,10 +11,10 @@ body{
     background-color: #00688B;
     text-align: center;
     font-size: smaller;
-    width: 110%
+    width: 100%
 }
 .btn{
-    text-align:center;
+    align-content:center;
 }
 
 .square {

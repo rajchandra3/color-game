@@ -13,6 +13,9 @@ body{
     font-size: smaller;
     width: 110%
 }
+.btn{
+    text-align:center;
+}
 
 .square {
     width: 30%;

@@ -1,0 +1,29 @@
+body{
+    background-color: white;
+}
+.header{
+    color: white;
+    background-color: #00688B;
+    text-align: center;
+}
+.text{
+    color: white;
+    background-color: #00688B;
+    text-align: center;
+    font-size: smaller;
+    width: 110%
+}
+
+.square {
+    width: 30%;
+    height: 30%;
+    float: left;
+    background: purple;
+    padding-bottom: 1.66%;
+    margin: 5px;
+}
+
+.container{
+    margin: 0 auto;
+    width: 600px;
+}

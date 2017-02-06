@@ -6,7 +6,7 @@ var result = document.querySelector("h2"); //to show wrong or right
 var aRed, aBlue, aGreen, red, green, blue; //a<Color> refers to answer color
 var correctColor = Math.floor(Math.random() * 6); // storing correct block number
 var data = []; // to store all the blocks rgb color as objects
-var isCorrect = document.querySelector("#iscorrect");
+var isCorrect = document.querySelector("h2");
 var reset = document.querySelector("#reset");
 function changeBackground(tile)
 {

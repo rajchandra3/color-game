@@ -47,3 +47,11 @@ p{
 .message{
     text-align: center;
 }
+.border{
+    border: solid;
+    border-color: grey;
+    border-width: 0.5px;
+}
+.footer-container{
+    background-color: #EDEDED;
+}

@@ -56,7 +56,7 @@ for(var i=0 ; i<6; i++)
                 t="th try."
             }
             isCorrect.textContent=s+"You guessed it in "+count+t;
-
+             reset.classList.remove("hide");
             for(var j=0; j<blocks.length; j++)
                 {
                     blocks[j].style.background=blocks[correctColor].style.background;

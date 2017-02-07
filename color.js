@@ -27,7 +27,7 @@ for(var i=0 ; i<6; i++)
         if(this.style.background===blocks[correctColor].style.background)
         {
             isCorrect.textContent="Congratulations! You guessed it !!"
-            //reset.classList.remove("hide");
+            reset.classList.remove("hide");
             for(var i=0; i<blocks.length; i++)
                 {
                     blocks[i].style.background=blocks[correctColor].style.background;

@@ -10,7 +10,7 @@ var isCorrect = document.querySelector("h2");
 var count=1;
 var f=0;
 var s="";
-var t="tries.";
+var t="";
 var reset = document.querySelector("#reset");
 function changeBackground(tile)
 {

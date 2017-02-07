@@ -69,6 +69,7 @@ for(var i=0 ; i<6; i++)
                 {
                 blocks[k].style.background=blocks[correctColor].style.background;
                 }
+            reset.classList.remove("hide");
         }
         else
         {

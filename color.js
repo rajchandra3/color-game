@@ -26,7 +26,8 @@ for(var i=0 ; i<6; i++)
     blocks[i].addEventListener("click", function(){
         if(this.style.background===blocks[correctColor].style.background)
         {
-            isCorrect.textContent="Congratulations! You guessed it !!"
+            isCorrect.textContent="Congratulations! You guessed it in "
+            isCorrect.textContent=i;
             //reset.classList.remove("hide");
             for(var i=0; i<blocks.length; i++)
                 {

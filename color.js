@@ -36,7 +36,7 @@ for(var i=0 ; i<6; i++)
         else
         {
             isCorrect.textContent="Opps! That is wrong...";
-            this.style.background="rgb(,,)";
+            this.style.background="white";
         }
         });
 }

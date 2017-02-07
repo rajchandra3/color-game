@@ -33,25 +33,29 @@ for(var i=0 ; i<6; i++)
             if(count==1)
             {
                 s="You are a Pro!!";
-                t="try."
+                t="st try."
             }
             else if(count==2)
             {
                 s="You are Color Guru!!";
+                t="nd try."
             }
             else if(count==3)
             {
-                s="Excillent!!";
+                s="Excellent!!";
+                t="rd try."
             }
             else if(count==4)
             {
                 s="Good!!";
+                t="th try."
             }
             else if(count==5)
             {
                 s="You were Lucky!!";
+                t="th try."
             }
-            isCorrect.textContent=s+"You guessed it in "+count+" "+t;
+            isCorrect.textContent=s+"You guessed it in "+count+t;
 
             for(var j=0; j<blocks.length; j++)
                 {
@@ -68,7 +72,7 @@ for(var i=0 ; i<6; i++)
         }
         else
         {
-            isCorrect.textContent="Opps! That is wrong...";
+            isCorrect.textContent="Oops! That is wrong...";
             this.style.background="white";
             if(f!=1)
                 count++;

@@ -7,6 +7,10 @@ var aRed, aBlue, aGreen, red, green, blue; //a<Color> refers to answer color
 var correctColor = Math.floor(Math.random() * 6); // storing correct block number
 var data = []; // to store all the blocks rgb color as objects
 var isCorrect = document.querySelector("h2");
+var count=1;
+var f=0;
+var s="";
+var t="tries.";
 var reset = document.querySelector("#reset");
 function changeBackground(tile)
 {
@@ -19,25 +23,55 @@ function changeBackground(tile)
     data.push({redVal: red, greenVal: green, blueVal: blue});
 }
 
-
 for(var i=0 ; i<6; i++)
 {
     changeBackground(blocks[i]);
     blocks[i].addEventListener("click", function(){
         if(this.style.background===blocks[correctColor].style.background)
         {
-            isCorrect.textContent="Congratulations! You guessed it in "
-            isCorrect.textContent=i;
-            //reset.classList.remove("hide");
-            for(var i=0; i<blocks.length; i++)
+            f=1;
+            if(count==1)
+            {
+                s="You are a Pro!!";
+                t="try."
+            }
+            else if(count==2)
+            {
+                s="You are Color Guru!!";
+            }
+            else if(count==3)
+            {
+                s="Excillent!!";
+            }
+            else if(count==4)
+            {
+                s="Good!!";
+            }
+            else if(count==5)
+            {
+                s="You were Lucky!!";
+            }
+            isCorrect.textContent=s+"You guessed it in "+count+" "+t;
+
+            for(var j=0; j<blocks.length; j++)
                 {
-                    blocks[i].style.background=blocks[correctColor].style.background;
+                    blocks[j].style.background=blocks[correctColor].style.background;
+                }
+        }
+        else if(count==5)
+        {
+            isCorrect.textContent="You lost !!";
+            for(var k=0; k<blocks.length; k++)
+                {
+                blocks[k].style.background=blocks[correctColor].style.background;
                 }
         }
         else
         {
             isCorrect.textContent="Opps! That is wrong...";
             this.style.background="white";
+            if(f!=1)
+                count++;
         }
         });
 }
@@ -45,6 +79,6 @@ var s=data[correctColor].redVal+data[correctColor].blueVal+data[correctColor].gr
 a=data[correctColor].redVal/s*100;
 b=data[correctColor].blueVal/s*100;
 c=data[correctColor].greenVal/s*100;
-rField.textContent=a.toFixed(1);
-bField.textContent=b.toFixed(1);
-gField.textContent=c.toFixed(1);
+rField.textContent=Math.round(a);
+bField.textContent=Math.round(b);
+gField.textContent=Math.round(c);

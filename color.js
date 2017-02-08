@@ -8,7 +8,7 @@ var correctColor = Math.floor(Math.random() * 6); // storing correct block numbe
 var data = []; // to store all the blocks rgb color as objects
 var isCorrect = document.querySelector("h2");
 var reset = document.querySelector("#reset");
-num = 0;
+var num = 0;
 function changeBackground(tile)
 {
     // generating random colors using Math.random() * (max - min) + min

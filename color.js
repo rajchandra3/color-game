@@ -8,6 +8,7 @@ var correctColor = Math.floor(Math.random() * 6); // storing correct block numbe
 var data = []; // to store all the blocks rgb color as objects
 var isCorrect = document.querySelector("h2");
 var reset = document.querySelector("#reset");
+var numGuesses = 0;
 function changeBackground(tile)
 {
     // generating random colors using Math.random() * (max - min) + min
@@ -24,9 +25,30 @@ for(var i=0 ; i<6; i++)
 {
     changeBackground(blocks[i]);
     blocks[i].addEventListener("click", function(){
+        num+=1;
         if(this.style.background===blocks[correctColor].style.background)
         {
-            isCorrect.textContent="Congratulations! You guessed it !!"
+            if(num===1)
+            {
+                isCorrect.textContent="Congratulations! You guessed it in 1st try! You Rock!";
+            }
+            else if(num===2)
+            {
+                isCorrect.textContent="Daaamn! You're  a Guessing Guru. You guessed it in the 2nd try.";
+            }
+            else if(num===3)
+            {
+                isCorrect.textContent="Nice! it took you 3 tries to guess correctly.";
+            }
+            else if(num==6)
+            {
+                isCorrect.textContent="Try again, maybe?";
+            }
+            else
+            {
+                isCorrect.textContent="Congratulations! You're getting better at this";
+            }
+            
             reset.classList.remove("hide");
             for(var i=0; i<blocks.length; i++)
                 {
@@ -35,7 +57,7 @@ for(var i=0 ; i<6; i++)
         }
         else
         {
-            isCorrect.textContent="Opps! That is wrong...";
+            isCorrect.textContent="Oops! That is wrong...";
             this.style.background="white";
         }
         });

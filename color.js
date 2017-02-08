@@ -80,7 +80,7 @@ for(var i=0 ; i<6; i++)
         }
         });
 }
-var s=256*3;
+var s=data[correctColor].redVal+data[correctColor].blueVal+data[correctColor].greenVal;
 a=data[correctColor].redVal/s*100;
 b=data[correctColor].blueVal/s*100;
 c=data[correctColor].greenVal/s*100;

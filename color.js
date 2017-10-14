@@ -12,6 +12,7 @@ var f=0;
 var s="";
 var t="";
 var reset = document.querySelector("#reset");
+var num = 0;
 function changeBackground(tile)
 {
     // generating random colors using Math.random() * (max - min) + min
@@ -27,6 +28,7 @@ for(var i=0 ; i<6; i++)
 {
     changeBackground(blocks[i]);
     blocks[i].addEventListener("click", function(){
+        num+=1;
         if(this.style.background===blocks[correctColor].style.background)
         {
             f=1;

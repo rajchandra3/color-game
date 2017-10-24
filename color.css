@@ -1,11 +1,13 @@
 body{
     background-color: white;
+    font-size: 36px !important;;
 }
 .header{
     font-family: cursive;
     color: white;
     background-color: #00688B;
     text-align: center;
+    font-size: 60px !important;
 }
 .col-lg-12{
     text-align: center;
@@ -66,4 +68,13 @@ p{
 
 .hide{
     display: none;
+}
+
+@media screen and (min-width: 768px) {
+    .header {
+        margin-top: 0px;
+    }
+    .square {
+        height: 20%;
+    }
 }

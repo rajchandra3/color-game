@@ -38,6 +38,7 @@ p{
 .square {
     width: 30%;
     height: 30%;
+    max-height: 20vw;
     float: left;
     background: purple;
     padding-bottom: 1.66%;

@@ -13,6 +13,7 @@ var s="";
 var t="";
 var reset = document.querySelector("#reset");
 var num = 0;
+
 function changeBackground(tile)
 {
     // generating random colors using Math.random() * (max - min) + min
@@ -57,7 +58,7 @@ for(var i=0 ; i<6; i++)
                 s="You were Lucky!!";
                 t="th try."
             }
-            isCorrect.textContent=s+"You guessed it in "+count+t;
+             isCorrect.textContent=s+"You guessed it in "+count+t;
              reset.classList.remove("hide");
             for(var j=0; j<blocks.length; j++)
                 {

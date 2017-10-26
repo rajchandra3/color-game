@@ -13,14 +13,13 @@ body{
     text-align: center;
     font-family: 'Alegreya', serif;
     font-size: large;
-    width: 100%;
     text-transform: capitalize;
 }
 .col-lg-4{
     text-align: center;
 }
 .col-lg-10{
-    margin-left: 11%;
+    /*margin-left: 11%;*/
 }
 p{
     font-family: Comic Sans MS;
@@ -37,19 +36,23 @@ p{
 }
 .square {
     width: 30%;
-    height: 30%;
+    height: 20%;
     max-height: 20vw;
     float: left;
     background: purple;
     padding-bottom: 1.66%;
-    margin: 5px;
+    margin: 1.66%;
 }
 
 .container{
     margin: 0 auto;
-    width: 600px;
+    width: 100%;
+    max-width: 800px;
 }
 .square-container{
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
     text-align: center;
 }
 .message{
@@ -62,6 +65,8 @@ p{
 }
 .footer-container{
     background-color: #EDEDED;
+    width: 100%;
+    overflow: hidden;
 }
 .foot{
     font-family: 'Acme', sans-serif;
@@ -71,11 +76,33 @@ p{
     display: none;
 }
 
-@media screen and (min-width: 768px) {
+.footer-container .footer-box{
+  border-right:solid;
+  border-color: grey;
+  border-width: 1px;
+}
+.square-container .row
+
+/*@media screen and (min-width: 768px) {
     .header {
         margin-top: 0px;
     }
     .square {
         height: 20%;
+    }
+}*/
+@media screen and (max-width: 768px) {
+
+    .header {
+        margin-top: 0px;
+        width: 100%;
+    }
+
+    .square {
+        height: 20%;
+    }
+    .footer-container .col-lg-4{
+      margin:0;
+
     }
 }

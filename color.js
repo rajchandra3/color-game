@@ -24,7 +24,8 @@ function changeBackground(tile)
     data.push({redVal: red, greenVal: green, blueVal: blue});
 }
 
-for(var i=0 ; i<6; i++)
+var i;
+for(i=0 ; i<6; i++)
 {
     changeBackground(blocks[i]);
     blocks[i].addEventListener("click", function(){

@@ -1,27 +1,18 @@
 body{
     background-color: white;
+    height : 100%;
+
 }
 .header{
-    font-family: cursive;
+    width: 100%;
+    padding : 3%;
+    margin : -3% 0 0 0;
     color: white;
     background-color: #00688B;
     text-align: center;
 }
-.col-lg-12{
-    text-align: center;
-    font-family: 'Alegreya', serif;
-    font-size: large;
-    width: 100%;
-    text-transform: capitalize;
-}
-.col-lg-4{
-    text-align: center;
-}
-.col-lg-10{
-    margin-left: 11%;
-}
+
 p{
-    font-family: Comic Sans MS;
     font-weight: bold;
     text-align: center;
 }

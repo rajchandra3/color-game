@@ -13,6 +13,7 @@ var s="";
 var t="";
 var reset = document.querySelector("#reset");
 var num = 0;
+var h=0;
 function changeBackground(tile)
 {
     // generating random colors using Math.random() * (max - min) + min

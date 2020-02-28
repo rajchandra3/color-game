@@ -1,0 +1,42 @@
+html, body, .container{
+    font-family: 'Ubuntu';
+}
+.row{
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+}
+.g-lawrencium{
+    color: azure;
+    background: #0f0c29;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #24243e, #302b63, #0f0c29);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #24243e, #302b63, #0f0c29); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+.g-midnight-grey{
+    background: #232526;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #414345, #232526);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #414345, #232526); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+.g-blue{
+    color: #fff;
+    background: #00c6ff;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #0072ff, #00c6ff);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #0072ff, #00c6ff); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+.button{
+    color:white;
+    font-weight: bold;
+}
+.bg-222{
+    background-color: #222;
+}
+@media (min-width: 577px){
+    .container{
+        margin-top: 4rem;
+        margin-bottom: 4rem;
+        border-radius: 8px !important;
+        /* border: 3px solid #0072ff; */
+    }
+    #message-id{
+        margin-right: 2rem;
+    }
+
+}

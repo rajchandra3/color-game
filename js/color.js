@@ -9,9 +9,6 @@ const reset_all = ()=>{
     var data = []; // to store all the blocks rgb color as objects
     var isCorrect = document.getElementById("message-id");
     var count=1;
-    var f=0;
-    var s="";
-    var t="";
     var reset = document.querySelector("#reset");
     var num = 0;
     let winner_message_displayed = false;
@@ -26,13 +23,11 @@ const reset_all = ()=>{
         data.push({redVal: red, greenVal: green, blueVal: blue});
     }
 
-    var i;
     for(i=0 ; i<6; i++)
     {
         changeBackground(blocks[i]);
         blocks[i].addEventListener("click", function(){
             num+=1;
-            console.log(this.style.background===blocks[correctColor].style.background,!winner_message_displayed)
             if(this.style.background===blocks[correctColor].style.background && !winner_message_displayed)
             {
                 winner_message_displayed=true;
@@ -56,8 +51,7 @@ const reset_all = ()=>{
             {
                 isCorrect.textContent="Oops! That is wrong...";
                 this.style.background="white";
-                if(f!=1)
-                    count++;
+                count++;
             }
         });
     }

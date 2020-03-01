@@ -23,7 +23,7 @@ const reset_all = ()=>{
         data.push({redVal: red, greenVal: green, blueVal: blue});
     }
 
-    for(i=0 ; i<6; i++)
+    for(let i=0 ; i<6; i++)
     {
         changeBackground(blocks[i]);
         blocks[i].addEventListener("click", function(){

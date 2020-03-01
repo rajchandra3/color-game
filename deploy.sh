@@ -1,1 +1,1 @@
-git add . && git commit -u && git push
+git add . && git commit -m "$1" && git status

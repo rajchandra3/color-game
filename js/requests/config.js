@@ -1,5 +1,5 @@
 import cookie from './cookie.js';
-const toggler = 0; 
+const toggler = 1;
 const env=toggler?'production':'development';
 
 const urls={

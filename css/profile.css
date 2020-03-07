@@ -48,6 +48,9 @@
         font-size: 28px;
         border-bottom-left-radius: 0px;
     }
+    .stats-header{
+        font-size: 32px;
+    }
 
 }
 

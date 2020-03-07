@@ -1,6 +1,6 @@
 import cookie from './cookie.js';
 
-const env='development';
+const env='production';
 
 const urls={
     app:`${env==="production"?'https://www.rajchandra.me/color-tile':'http://localhost:8060/color-tile'}`,

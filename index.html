@@ -53,6 +53,12 @@
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
+
+        <!-- import google signin -->
+        <!-- <meta name="google-signin-scope" content="profile email"> -->
+        <meta name="google-signin-client_id" content="843832086130-3gvh6ucajv3j0kcldpuij5oj5ttse1in.apps.googleusercontent.com">
+        <script src="https://apis.google.com/js/platform.js?onload=init" async defer></script>
+
         <!-- import js files -->
         <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
@@ -96,7 +102,11 @@
 
                 </div>
                 <div class="col-lg-12 pb-5">
-                    <button class="button btn g-blue text-white mt-3 flip animated hide" type="reset" id="reset">START AGAIN</button>
+                    <button class="button btn g-blue text-white mt-3 flip animated invisible" id="reset-btn">START AGAIN</button>
+                    <br><br>
+                    <div class="g-signin2" id="g-signin-btn"></div>
+                    <br>
+                    <button id="g-signout-btn">Sign out</button>
                 </div>
                 <div class="col-lg-12 bg-222">
                     <!-- footer for apps -->
@@ -116,7 +126,30 @@
                 </div>
             </div>
         </div>
+        
+        
+        <!-- initiate google auth -->
+        <script>
+            function init() {
+                gapi.load('auth2', function() {
+                    /* Ready. Make a call to gapi.auth2.init or some other API */
+                    auth2 = gapi.auth2.init({
+                        client_id: '843832086130-3gvh6ucajv3j0kcldpuij5oj5ttse1in.apps.googleusercontent.com',
+                        scope: 'profile'
+                    });
+                }); 
+                
+                // let is_loggedIn = gapi.auth2.getAuthInstance().isSignedIn.get();
+                // if(is_loggedIn){
+                //     document.getElementById('g-signin-btn').style.display='none';
+                // }else{
+                //     document.getElementById('g-signout-btn').style.display='none';
+                // }
+            }
+        </script>
         <!-- import js -->
         <script type="module" src="/js/color.js"></script>
+        <script type="module" src="/js/requests/components/auth.js"></script>
+
    </body>
 </html>

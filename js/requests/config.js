@@ -1,14 +1,17 @@
-import cookieManager from './cookie';
+import cookie from './cookie.js';
 
-const env='production';
+const env='development';
 
-const base_url=`${env==="production"?'https://www.rajchandra.me/color-tile':'http://localhost:8060/color-tile'}`;
+const urls={
+    app:`${env==="production"?'https://www.rajchandra.me/color-tile':'http://localhost:8060/color-tile'}`,
+    base_url:`${env==="production"?'https://www.rajchandra.me':'http://localhost:8060'}`
+}
 
 const getAuthConfig = ()=>{
     //return auth headers
     return {
-        Authorization: `Bearer ${cookieManager.getCookie()}`
+        Authorization: `Bearer ${cookie.getCookie(cookie.cookieName)}`
     }
 }
 
-export default {env, base_url, getAuthConfig};
+export default { env, urls, getAuthConfig };

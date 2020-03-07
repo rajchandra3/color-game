@@ -1,4 +1,5 @@
-import {env, base_url, getAuthConfig} from './config';
+import Config from '../config.js';
+import Cookie from '../cookie.js';
 
 const updateGlobalSucessfulGuessCount = () => {
     axios.get(`${base_url}/update/count/responses/success`)
@@ -19,10 +20,12 @@ const updateGlobalFailedGuessCount = () => {
         .catch(error => console.error(error));
 };
 
-const getGlobalStats = () => {
-    axios.get(`${base_url}/get/stats/global`)
-        .then(response => {
-            console.log(response.data);
-        })
-        .catch(error => console.error(error));
+const currentUserStats = () => {
+    axios.get(`${Config.urls.app}/stats/u/serve`,{headers:Config.getAuthConfig()})
+    .then(response => {
+        console.log(response.data);
+    })
+    .catch(error => console.error(error));
 };
+
+export default {currentUserStats}

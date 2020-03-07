@@ -1,69 +1,96 @@
 import {phrases,generateRandomNumber,getSuperscript} from './phrases.js';
-const reset_all = ()=>{
-    var blocks = document.querySelectorAll(".square");
-    var rField = document.getElementById("r");
-    var gField = document.getElementById("g");
-    var bField = document.getElementById("b");
-    var red, green, blue; //a<Color> refers to answer color
-    var correctColor = Math.floor(Math.random() * 6); // storing correct block number
-    var data = []; // to store all the blocks rgb color as objects
-    var isCorrect = document.getElementById("message-id");
-    var count=1;
-    var reset = document.querySelector("#reset");
-    var num = 0;
-    let winner_message_displayed = false;
-    isCorrect.textContent=`Start tapping below ...`;
-    let changeBackground = (tile)=>{
-        // generating random colors using Math.random() * (max - min) + min
-        red = Math.floor(Math.random() * 256);
-        green = Math.floor(Math.random() * 256);
-        blue = Math.floor(Math.random() * 256);
-        tile.style.background = "rgb("+red+","+green+","+blue+")";
-        //changing block background color
-        data.push({redVal: red, greenVal: green, blueVal: blue});
-    }
+import Cookie from './requests/cookie.js';
+import StateManager from './states/state_manager.js';
+import Gameplay from './requests/components/gameplay.js';
+import Stats from './requests/components/user_stats.js';
 
-    for(let i=0 ; i<6; i++)
-    {
-        changeBackground(blocks[i]);
-        blocks[i].addEventListener("click", function(){
-            num+=1;
-            if(this.style.background===blocks[correctColor].style.background && !winner_message_displayed)
+const getRandomColor = ()=>{return (Math.floor(Math.random() * 256));}
+
+const paint_all_tiles = (tiles,color)=>{
+    for(let k in tiles){
+        console.log(k,tiles[k])
+        tiles[k].style.background=color;
+    }
+}
+
+const paint_tile_randomly = (tile)=>{
+    // generating random colors using Math.random() * (max - min) + min
+    let random_color={red: getRandomColor(), green: getRandomColor(), blue: getRandomColor()};
+    tile.style.background = `rgb(${random_color.red},${random_color.green},${random_color.blue})`;;
+    return (random_color); //changing block background color
+}
+
+const restart_game_cta = (choice)=>{
+    let reset = document.getElementById("reset-btn");
+    switch(choice){
+        case 'show':
+            reset.classList.remove("invisible");
+            reset.classList.add("visible");
+            break;
+        case 'hide':
+            reset.classList.remove("visible");
+            reset.classList.add("invisible");
+            break;
+        default:
+            reset.classList.add("visible");
+            reset.classList.remove("invisible");
+    }
+}
+
+const reset_all = ()=>{
+    restart_game_cta('hide')
+    StateManager.handle_state_change();
+    Stats.currentUserStats();
+    let blocks = document.querySelectorAll(".square");
+    const correct_color_pos = Math.floor(Math.random() * 6); // storing correct tile number
+    let data = []; // to store all the blocks rgb color as objects
+    let message_block = document.getElementById("message-id");
+    // let num=1;
+    let num = 1;
+    let message_displayed = false;
+    message_block.textContent=`Start tapping below ...`;
+
+    for(let i=0;i<6;i++) {
+        data.push(paint_tile_randomly(blocks[i]));
+        blocks[i].addEventListener("click",(e)=>{
+            console.log(num);
+            //user won
+            if(num>0 && num<5 && e.target.style.background===blocks[correct_color_pos].style.background && !message_displayed)
             {
-                winner_message_displayed=true;
-                isCorrect.textContent=`${phrases[generateRandomNumber()]} You guessed it in ${count}${getSuperscript(num)} attempt.`;
-                reset.classList.remove("hide");
-                for(var j=0; j<blocks.length; j++)
-                    {
-                        blocks[j].style.background=blocks[correctColor].style.background;
-                    }
+                message_block.textContent=`${phrases[generateRandomNumber()]} You guessed it in ${num}${getSuperscript(num)} attempt.`;
+                message_displayed=true;
+                paint_all_tiles(blocks,correct_color_pos);
+                restart_game_cta('show');
+                Gameplay.add(true,num); //save gameplays
             }
-            else if(count==5 && !winner_message_displayed)
+            //user lost
+            else if(num==5 && !message_displayed)
             {
-                isCorrect.textContent="You lose, try again!";
-                for(var k=0; k<blocks.length; k++)
-                    {
-                    blocks[k].style.background=blocks[correctColor].style.background;
-                    }
-                reset.classList.remove("hide");
+                message_block.textContent="You lose, try again!";
+                message_displayed=true;
+                paint_all_tiles(blocks,correct_color_pos);
+                // e.target.style.background="white"; //make this tile white
+                restart_game_cta('show');
+                Gameplay.add(false,num); //save gameplays
             }
-            else if(!winner_message_displayed)
+            //user still has more attempts
+            else if(!message_displayed)
             {
-                isCorrect.textContent="Oops! That is wrong...";
-                this.style.background="white";
-                count++;
+                message_block.textContent="Oops! That is wrong...";
+                e.target.style.background="white";
+                num++;
             }
         });
     }
-    var s=data[correctColor].redVal+data[correctColor].blueVal+data[correctColor].greenVal;
-    let a=data[correctColor].redVal/s*100;
-    let b=data[correctColor].blueVal/s*100;
-    let c=data[correctColor].greenVal/s*100;
-    rField.textContent=Math.round(a);
-    bField.textContent=Math.round(b);
-    gField.textContent=Math.round(c);
-}
-reset_all()
 
-document.getElementById("reset").addEventListener("click",reset_all);
-export default reset_all;
+    //set color value in rgb labels
+    let r=data[correct_color_pos].red/256*100;
+    let g=data[correct_color_pos].green/256*100;
+    let b=data[correct_color_pos].blue/256*100;
+    document.getElementById("r").textContent=Math.round(r);
+    document.getElementById("g").textContent=Math.round(g);
+    document.getElementById("b").textContent=Math.round(b);
+}
+
+reset_all();
+document.getElementById("reset-btn").addEventListener("click",reset_all);

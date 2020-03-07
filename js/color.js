@@ -7,9 +7,8 @@ import Stats from './requests/components/user_stats.js';
 const getRandomColor = ()=>{return (Math.floor(Math.random() * 256));}
 
 const paint_all_tiles = (tiles,color)=>{
-    for(let k in tiles){
-        console.log(k,tiles[k])
-        tiles[k].style.background=color;
+    for(let tile of tiles){
+        tile.style.background=tiles[color].style.background;
     }
 }
 

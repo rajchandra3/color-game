@@ -1,0 +1,33 @@
+.no-padding{
+    padding: 0px !important;
+}
+.no-margin{
+    margin: 0px !important;
+}
+.user-img-container{
+    background-color: #007bff;
+    color: #fff;
+}
+.user-image{
+    height: 150px;
+    border: 5px solid #222;
+}
+.auth-ctas{
+    display: flex;
+    justify-content: center;
+}
+.user-stats{
+    margin-top: -40px;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    background-color: aqua;
+    text-align: center !important;
+}
+
+@media (min-width: 577px){
+    .user-stats{
+        /* background-color: aqua; */
+        text-align: left !important;
+    }
+
+}

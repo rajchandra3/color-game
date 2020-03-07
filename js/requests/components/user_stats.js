@@ -1,29 +1,16 @@
 import Config from '../config.js';
 import Cookie from '../cookie.js';
-
-const updateGlobalSucessfulGuessCount = () => {
-    axios.get(`${base_url}/update/count/responses/success`)
-        .then(response => {
-            console.log(response.data);
-        })
-        .catch(error => console.error(error));
-};
-
-const updateGlobalFailedGuessCount = () => {
-    axios.get(
-        `${base_url}/update/count/responses/failed`,
-        getAuthConfig()
-        )
-        .then(response => {
-            console.log(response.data);
-        })
-        .catch(error => console.error(error));
-};
+import UIMaker from '../../main.js';
 
 const currentUserStats = () => {
     axios.get(`${Config.urls.app}/stats/u/serve`,{headers:Config.getAuthConfig()})
     .then(response => {
-        console.log(response.data);
+        const data=response.data;
+        if(data.code==0){
+            UIMaker.update_profile_data(data.payload.data);
+        }else{
+            console.log('user not found');
+        }
     })
     .catch(error => console.error(error));
 };

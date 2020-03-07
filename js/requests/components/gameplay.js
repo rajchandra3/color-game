@@ -13,4 +13,15 @@ const add = (won,attempts) => {
     .catch(error => console.error(error));
 };
 
-export default {add};
+
+const getUserGameplays = (won,attempts) => {
+    axios.get(`${Config.urls.app}/gameplay/u/serve`,
+    {headers: Config.getAuthConfig()})
+    .then(response => {
+        const data = response.data;
+        console.log(`gameplays`, data);
+    })
+    .catch(error => console.error(error));
+};
+
+export default {add, getUserGameplays};

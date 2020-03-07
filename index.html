@@ -62,10 +62,10 @@
 
         <!-- import js files -->
         <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 
         <title>Color Tile by Raj Chandra</title>
         <link rel="icon" href="https://www.rajchandra.me/images/favicon.png" type="image/png" sizes="16x16">
-
     </head>
     <body>
         <div class="container text-center">
@@ -74,16 +74,25 @@
                     <h1 class="font-weight-bolder bounceInDown animated">Color Tile</h1>
                 </div>
                 <div class="col-lg-12">
+                    <!-- nav container -->
                     <nav class="container-fluid no-padding">
                         <div class="row nav nav-tabs text-center" id="nav-tab" role="tablist">
-                            <a class="col nav-item nav-link font-weight-bold active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">ME</a>
-                            <a class="col nav-item nav-link font-weight-bold" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">APPS</a>
+                            <a class="col nav-item nav-link font-weight-bold active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Game</a>
+                            <a class="col nav-item nav-link font-weight-bold" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">
+                                Your Profile&nbsp;
+                                <img 
+                                    src="" 
+                                    alt="current user image" 
+                                    height="30" 
+                                    class="user-image rounded-circle">
+                            </a>
                         </div>
                     </nav>
-                    <div class="tab-content" id="nav-tabContent">
-                        <div class="tab-pane fade " id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                    <!-- tab container -->
+                    <div class="tab-content align-center" id="nav-tabContent">
+                        <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
                             <!-- game container -->
-                            <div class="col-lg-12 pb-4">
+                            <div class="col-lg-12 pb-4 pt-4">
                                 <!-- game introduction -->
                                 <p class="font-weight-bolder bounceInRight animated">Can you guess the which color is formed when RED, GREEN and BLUE colors are mixed?</p><br>
                                 <div class="btn-group m-1" role="group" aria-label="Red color label">
@@ -99,10 +108,10 @@
                                     <button type="button" class="btn btn-primary"><strong ><span id="b"></span>%</strong ></button>
                                 </div>
                             </div>
-                            <div class="col-lg-8 pb-4">
+                            <div class="col-lg-12 pb-4 d-flex justify-content-center">
                                 <div id="message-id" class="alert alert-primary font-weight-bolder" role="alert">  </div>
                             </div>
-                            <div class="col-lg-12 pb-4">
+                            <div class="col-lg-12 pb-2">
                                 <!-- game frame -->
                                 <div class="col-xs-4 p-5 m-2 square btn btn-primary bounceInLeft animated"></div>
                                 <div class="col-xs-4 p-5 m-2 square btn btn-primary bounceInRight animated"></div>
@@ -112,157 +121,112 @@
                                 <div class="col-xs-4 p-5 m-2 square btn btn-primary bounceInRight animated"></div>
     
                                 <!-- show lifetime game progress -->
-                                <div class="col-sm-12 col-lg-6 p-4">
+                                <div class="col-sm-12 p-2">
                                     <div class="progress">
                                         <div class="progress-bar bg-success" id="success-pbar" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
                                         <div class="progress-bar bg-danger" id="failure-pbar" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-12 pb-5">
+                            <div class="col-lg-12 pb-4 d-flex align-self-center justify-content-center">
                                 <button class="button btn g-blue text-white mt-3 flip animated invisible" id="reset-btn">START AGAIN</button>
                             </div>
                         </div>
-                        <div class="tab-pane fade active show" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                        <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
                             <!-- profile container -->
                             <div class="container-fluid no-padding no-margin">
                                 <div class="row">
                                     <!-- profile image -->
                                     <div class="col-lg-4 col-sm-12 p-5 user-img-container">
-                                        <img src="https://www.rajchandra.me/images/favicon.png" alt="user image" class="user-image rounded-circle"> <br>
-                                        <div class="username mt-3">Raj Chandra</div>
-                                        <div class="join-date">Joined - June 2019</div>
+                                        <img src="" alt="current user image" height="125" class="user-image rounded-circle"> <br>
+                                        <div class="username font-weight-bold mt-3"></div>
+                                        <div class="join-date font-weight-bold pb-5"></div>
                                     </div>
-                                    <div class="col-lg-4 user-stats p-5">
-                                        <h3 class="">Your progress</h3>
+                                    <!-- user stats container -->
+                                    <div class="col-lg-4 user-stats-container no-padding text-monospace">
+                                        <div class="stats-header p-4">Your Stats</div>
                                         <!-- user's stats -->
-                                        <div class="col-sm-12 col-lg-12 pt-4">
-                                            Total Attempts : 100 <br>
-                                            Successful Attempts: 90 <br>
-                                            Failed Attempts: 10 <br>
+                                        <div class="stats-wrapper pb-2">
+                                            <div class="col-sm-12 col-lg-12 p-4 is-stat">
+                                                <div class="is-stats-number" id="stats-success-count">Loading...</div>
+                                                <div class="is-stats-text">Successful Attempts</div>
+                                            </div>
+                                            <div class="col-sm-12 col-lg-12 p-4 is-stat">
+                                                <div class="is-stats-number" id="stats-attempts-count">Loading...</div>
+                                                <div class="is-stats-text">Attempts</div>
+                                            </div>
+                                            <div class="col-sm-12 col-lg-12 p-4 is-stat">
+                                                <div class="is-stats-number" id="stats-total-points">Loading...</div>
+                                                <div class="is-stats-text">Points</div>
+                                            </div>
                                         </div>
                                     </div>
                                     <!-- past gameplays -->
-                                    <!--  new Date(Date.now()).toLocaleTimeString() -->
-                                    <div class="col-lg-4 col-sm-12 no-padding no-margin">
-                                        <table class="table">
+                                    <div class="col-lg-4 col-sm-12 gameplays-container no-padding no-margin">
+                                        <table class="table text-center">
                                             <caption class="text-center">Your last 5 gameplays</caption>
-                                                <thead>
-                                                <tr>
-                                                    <th scope="col">Played</th>
-                                                    <th scope="col">Status</th>
-                                                    <th scope="col">Attempts</th>
-                                                </tr>
-                                                </thead>
-                                                <tbody>
-                                                <tr>
-                                                    <th>4sec ago</th>
-                                                    <td>won</td>
-                                                    <td>3</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Jacob</td>
-                                                    <td>Thornton</td>
-                                                    <td>@fat</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Larry</td>
-                                                    <td>the Bird</td>
-                                                    <td>@twitter</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Jacob</td>
-                                                    <td>Thornton</td>
-                                                    <td>@fat</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Larry</td>
-                                                    <td>the Bird</td>
-                                                    <td>@twitter</td>
-                                                </tr>
-                                                </tbody>
-                                            </table>
+                                            <thead class="thead-dark">
+                                            <tr>
+                                                <th scope="col">Played</th>
+                                                <th scope="col">Status</th>
+                                                <th scope="col">Attempts</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            </tbody>
+                                        </table>
                                     </div>
-                                    </div>
-                                    <div class="col-lg-12 col-sm-12 auth-ctas p-4">
+                                    <!-- auth btn container -->
+                                    <div class="col-lg-12 col-sm-12 auth-cta-container p-2">
                                         <div class="g-signin2" id="g-signin-btn"></div>
                                         <button class="btn btn-light" id="g-signout-btn">
                                             <img 
-                                                src="https://www.rajchandra.me/images/favicon.png" 
+                                                src="" 
                                                 alt="user image" 
-                                                height="30" 
-                                                class="rounded-circle"> &nbsp; Logout
+                                                height="40" 
+                                                class="user-image rounded-circle"> &nbsp; Logout
                                         </button>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <!-- footer -->
-                    <div class="col-lg-12 bg-222">
-                        <!-- footer for apps -->
-                        <footer class="p-4 m-1 text-white text-center">
-                            &copy; 
-                            2017 - <span id="thisYear"></span> 
-                            <a href="https://www.rajchandra.me">Raj Chandra</a>. All Rights Reserved. <br>
-                            <a href="https://www.rajchandra.me"><i class="fas fa-globe fa-lg text-white m-2" aria-hidden="true" target="_blank"></i></a> &nbsp;
-                            <a href="https://www.twitter.com/raj_chandra3"><i class="fab fa-twitter fa-lg text-white m-2" aria-hidden="true" target="_blank"></i></a> &nbsp;
-                            <a href="https://www.linkedin.com/in/rajchandra3/" target="_blank"><i class="fab fa-linkedin fa-lg text-white m-2" aria-hidden="true"></i></a>
-                        </footer>
-                        <!-- script for year in footer -->
-                        <script>
-                            var d = new Date();
-                            document.getElementById('thisYear').innerHTML = d.getFullYear();
-                        </script>
-                    </div>
+                </div>
+                <!-- footer -->
+                <div class="col-lg-12 bg-222">
+                    <!-- footer for apps -->
+                    <footer class="p-4 m-1 text-white text-center">
+                        &copy; 
+                        2017 - <span id="thisYear"></span> 
+                        <a href="https://www.rajchandra.me">Raj Chandra</a>. All Rights Reserved. <br>
+                        <a href="https://www.rajchandra.me"><i class="fas fa-globe fa-lg text-white m-2" aria-hidden="true" target="_blank"></i></a> &nbsp;
+                        <a href="https://www.twitter.com/raj_chandra3"><i class="fab fa-twitter fa-lg text-white m-2" aria-hidden="true" target="_blank"></i></a> &nbsp;
+                        <a href="https://www.linkedin.com/in/rajchandra3/" target="_blank"><i class="fab fa-linkedin fa-lg text-white m-2" aria-hidden="true"></i></a>
+                    </footer>
+                    <!-- script for year in footer -->
+                    <script>
+                        var d = new Date();
+                        document.getElementById('thisYear').innerHTML = d.getFullYear();
+                    </script>
                 </div>
             </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            </div>
-        </div>
-        
-        
-        <!-- initiate google auth -->
-        <script>
-            function init() {
-                gapi.load('auth2', function() {
-                    /* Ready. Make a call to gapi.auth2.init or some other API */
-                    auth2 = gapi.auth2.init({
-                        client_id: '843832086130-3gvh6ucajv3j0kcldpuij5oj5ttse1in.apps.googleusercontent.com',
-                        scope: 'profile'
-                    });
-                }); 
-                
-                // let is_loggedIn = gapi.auth2.getAuthInstance().isSignedIn.get();
-                // if(is_loggedIn){
-                //     document.getElementById('g-signin-btn').style.display='none';
-                // }else{
-                //     document.getElementById('g-signout-btn').style.display='none';
-                // }
-            }
-        </script>
-        <!-- import js -->
-        <script type="module" src="/js/color.js"></script>
-        <script type="module" src="/js/requests/components/auth.js"></script>
+        </div>            
+    </div>
+    <!-- initiate google auth -->
+    <script>
+        function init() {
+            gapi.load('auth2', function() {
+                /* Ready. Make a call to gapi.auth2.init or some other API */
+                auth2 = gapi.auth2.init({
+                    client_id: '843832086130-3gvh6ucajv3j0kcldpuij5oj5ttse1in.apps.googleusercontent.com',
+                    scope: 'profile'
+                });
+            }); 
+        }
+    </script>
+    <!-- import js -->
+    <script type="module" src="/js/main.js"></script>
+    <script type="module" src="/js/requests/components/auth.js"></script>
 
    </body>
 </html>

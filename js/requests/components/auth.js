@@ -17,6 +17,7 @@ const signOut = () => {
         Store.empty();
         Cookie.removeCookie(Cookie.cookieName);
         StateManager.handle_state_change();
+        location.reload();
     });
 }
 
@@ -32,9 +33,8 @@ const loginUsingGoogle = (raw)=>{
         if(data.code===0){
             Cookie.setCookie(Cookie.cookieName,data.cookies.access_token,999);
             Store.setItem('userData',data.userData);
-            StateManager.handle_state_change();
+            location.reload();
         }else{
-            signOut();
             //error
             console.log(data);
         }

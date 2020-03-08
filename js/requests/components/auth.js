@@ -8,7 +8,7 @@ const signOut = () => {
     googleAuth.signOut().then(function () {
         Store.empty();
         Cookie.removeCookie(Cookie.cookieName);
-        StateManager.handle_state_change();
+        // StateManager.handle_state_change();
         location.reload();
     });
 }

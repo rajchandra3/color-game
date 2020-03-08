@@ -1,7 +1,7 @@
 printf "Minifying css files in ./css folder...\n\n"
 chmod +x ./scripts/minify_css.sh
 ./scripts/minify_css.sh
-echo "Minified css files!\n\n"
+printf "Minified css files!\n\n"
 while true; do
     read -p "Did you change the env in ./js/config.js file to production?" yn
     case $yn in
@@ -17,8 +17,7 @@ while true; do
         exit;;
 
         * ) 
-        printf "Please answer yes or no.\n\n";
-        exit;;
+        printf "Please answer yes or no.\n\n";;
 
     esac
 done

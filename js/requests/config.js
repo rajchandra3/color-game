@@ -1,5 +1,5 @@
 import cookie from './cookie.js';
-const toggler = 1;
+const toggler = window.location.hostname === 'color-tile.rajchandra.me' ? 1 : 0;
 const env=toggler?'production':'development';
 
 const urls={

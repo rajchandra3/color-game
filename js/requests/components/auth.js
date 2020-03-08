@@ -1,17 +1,13 @@
 import Cookie from '../cookie.js';
 import Config from '../config.js';
 import Store from '../localstorage.js';
-import StateManager from '../../states/state_manager.js';
 
 const signOut = () => {
     var googleAuth = gapi.auth2.getAuthInstance();
     googleAuth.signOut().then(function () {
         Store.empty();
         Cookie.removeCookie(Cookie.cookieName);
-        // while(Cookie.getCookie(Cookie.cookieName)){
-        //     if(!Cookie.getCookie(Cookie.cookieName))
-        //     locati on.reload();
-        // }
+        location.reload();
     });
 }
 

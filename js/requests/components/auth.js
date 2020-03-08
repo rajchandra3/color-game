@@ -8,8 +8,10 @@ const signOut = () => {
     googleAuth.signOut().then(function () {
         Store.empty();
         Cookie.removeCookie(Cookie.cookieName);
-        // StateManager.handle_state_change();
-        location.reload();
+        // while(Cookie.getCookie(Cookie.cookieName)){
+        //     if(!Cookie.getCookie(Cookie.cookieName))
+        //     locati on.reload();
+        // }
     });
 }
 

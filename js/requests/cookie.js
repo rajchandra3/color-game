@@ -11,7 +11,7 @@ const setCookie = (cname,cvalue,exp_days) =>{
     let d = new Date();
     d.setTime(d.getTime() + (exp_days*24*60*60*1000));
     let expires = `expires=${d.toGMTString()}`;
-    document.cookie = `${cname}=${cvalue};domain=${Config.env==='production'?'rajchandra.me':'localhost'};${expires}`;
+    document.cookie = `${cname}=${cvalue};path=/;domain=${Config.env==='production'?'rajchandra.me':'localhost'};${expires}`;
 }
   
 const getCookie = (cname)=> {
@@ -40,7 +40,7 @@ const checkCookie = ()=> {
 }
 
 const removeCookie = (cname) => {
-    document.cookie = `${cname}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+    document.cookie = `${cname}= ;expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;domain=${Config.env==='production'?'rajchandra.me':'localhost'}`;
 }
 
 export default {cookieName, getCookie, setCookie, checkCookie, removeCookie}

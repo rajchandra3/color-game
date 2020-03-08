@@ -39,6 +39,10 @@
     .user-img-container{
         color: #fff;
         background-color: #702e52;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
     }
     .user-stats-container{
         color: #fff;
@@ -62,6 +66,10 @@
     .user-img-container{
         color: #fff;
         background-color: #34495e;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
     }
     .user-stats-container{
         color: #fff;

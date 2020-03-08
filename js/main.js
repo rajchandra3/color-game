@@ -1,8 +1,20 @@
-import {phrases,generateRandomNumber,getSuperscript} from './phrases.js';
-import Cookie from './requests/cookie.js';
+import {phrases,generateRandomNumber,getSuperscript} from './common.js';
 import StateManager from './states/state_manager.js';
 import Gameplay from './requests/components/gameplay.js';
-import Stats from './requests/components/user_stats.js';
+import Config from './requests/config.js';
+
+//put css in html
+if(Config.env==='production'){
+    document.querySelector('head').innerHTML += `
+    <link rel="stylesheet" type="text/css" href="/css/min/color.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/min/profile.min.css">
+    `;
+}else{
+    document.querySelector('head').innerHTML += `
+    <link rel="stylesheet" type="text/css" href="/css/color.css">
+    <link rel="stylesheet" type="text/css" href="/css/profile.css">
+    `;
+}
 
 const getRandomColor = ()=>{return (Math.floor(Math.random() * 256));}
 

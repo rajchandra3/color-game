@@ -40,9 +40,6 @@
         <meta name="twitter:title" content="Color Tile by Raj Chandra">
         <meta name="twitter:description" content="Challenge yourself to play the color tile game loved by thousands of kids around the world, all you need to do is select the correct tile!">
         <meta name="twitter:image" content="https://www.rajchandra.me/images/favicon.png">
-        <link rel="stylesheet" type="text/css" href="/css/color.css">
-        <link rel="stylesheet" type="text/css" href="/css/profile.css">
-        <link rel="stylesheet" type="text/css" href="/css/animate.css">
         <!-- import fonts -->
         <link href="https://fonts.googleapis.com/css?family=Ubuntu&display=swap" rel="stylesheet">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/js/all.min.js"></script>
@@ -82,7 +79,8 @@
                                 <img 
                                     src="" 
                                     alt="current user image" 
-                                    height="30" 
+                                    height="30px" 
+                                    width="30px"
                                     class="user-image no-border rounded-circle">
                             </a>
                         </div>
@@ -138,7 +136,7 @@
                                 <div class="row">
                                     <!-- profile image -->
                                     <div class="col-lg-4 col-sm-12 p-5 user-img-container">
-                                        <img src="" alt="current user image" height="125" class="user-image rounded-circle"> <br>
+                                        <img src="" alt="current user image" height="125px" width="125px" class="user-image rounded-circle"> <br>
                                         <div class="username font-weight-bold mt-3"></div>
                                         <div class="join-date font-weight-bold pb-5"></div>
                                     </div>
@@ -177,13 +175,14 @@
                                         </table>
                                     </div>
                                     <!-- auth btn container -->
-                                    <div class="col-lg-12 col-sm-12 auth-cta-container p-5">
+                                    <div class="col-lg-12 col-sm-12 auth-cta-container p-3">
                                         <div id="g-signin-btn"></div>
                                         <button class="btn btn-light" id="g-signout-btn">
                                             <img 
                                                 src="" 
                                                 alt="user image" 
-                                                height="30" 
+                                                height="30px" 
+                                                width="30px" 
                                                 class="user-image no-border rounded-circle"> &nbsp; Logout
                                         </button>
                                     </div>
@@ -210,8 +209,7 @@
                     </script>
                 </div>
             </div>
-        </div>            
-    </div>
+        </div>
     <!-- import js -->
     <script type="module" src="/js/main.js"></script>
     <script type="module" src="/js/requests/components/auth.js"></script>

@@ -3,14 +3,6 @@ import Config from '../config.js';
 import Store from '../localstorage.js';
 import StateManager from '../../states/state_manager.js';
 
-const onSignIn = () => {
-    const raw = gapi.auth2.getAuthInstance().currentUser.get().getAuthResponse().id_token;
-    const data = {
-        id_token: raw
-    }
-    loginUsingGoogle(data);
-}
-
 const signOut = () => {
     var googleAuth = gapi.auth2.getAuthInstance();
     googleAuth.signOut().then(function () {
@@ -43,7 +35,37 @@ const loginUsingGoogle = (raw)=>{
     });
 }
 
-document.getElementById('g-signin-btn').addEventListener('click',onSignIn);
-document.getElementById('g-signout-btn').addEventListener('click',signOut);
 
-export default {onSignIn, signOut, loginUsingGoogle};
+const onSuccess = (googleUser)=> {
+//   console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
+    if(!Store.getItem('userData')){
+        const raw = gapi.auth2.getAuthInstance().currentUser.get().getAuthResponse().id_token;
+        const data = {
+            id_token: raw
+        }
+        loginUsingGoogle(data);
+    }else{
+        console.log('userdata is available!')
+    }
+}
+const onFailure = (error)=> {
+  console.log(`Error with google signin! ${error}`);
+}
+const renderButton = ()=> {
+  gapi.signin2.render('g-signin-btn', {
+    'scope': 'profile email',
+    'width': 240,
+    'height': 50,
+    'longtitle': true,
+    'theme': 'dark',
+    'onsuccess': onSuccess,
+    'onfailure': onFailure
+  });
+}
+
+window.onload=()=>{
+    renderButton();
+}
+
+// document.getElementById('g-signin-btn').addEventListener('click',onSignIn);
+document.getElementById('g-signout-btn').addEventListener('click',signOut);

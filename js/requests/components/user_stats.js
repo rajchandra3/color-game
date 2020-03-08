@@ -28,7 +28,9 @@ const currentUserStats = () => {
         .catch(error => console.error(error));
     }else{
         console.log('Stats: Not fetching stats since no new game has been played!');
-        Profile.populateStats(Store.getItem('stats'));
+        const stats_data=Store.getItem('stats');
+        Profile.populateStats(stats_data);
+        Profile.update_progress_bar(stats_data);
     }
 };
 

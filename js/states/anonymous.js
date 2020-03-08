@@ -38,8 +38,13 @@ const exec = ()=>{
     add_usernames(usernames);
     const join_dates=document.querySelectorAll('.join-date');
     add_join_dates(join_dates);
-    document.querySelector('.stats-wrapper').innerHTML=`You must signin to unlock your stats!`;
-    document.querySelector('.gameplays-container').style.display='none';
+    document.querySelector('.progress-container').style.display='none';
+    document.querySelector('.stats-wrapper').innerHTML=`<div class='p-3'>You must signin to unlock your stats</div>`;
+    document.querySelector('.gameplays-container').style.textAlign='left';
+    document.querySelector('.gameplays-container').innerHTML=`
+        <h3 class='p-4 text-monospace'>Your Gameplays</h3>
+        <div class='p-3 text-monospace'>You must signin to unlock your gameplays</div>
+        `;
 }
 
 export default {exec};

@@ -4,12 +4,16 @@
 .no-margin{
     margin: 0px !important;
 }
+.no-border{
+    border: none !important;
+}
 .user-image{
     border: 5px solid #fff;
 }
-.gameplays-container{
-    display: flex;
-    justify-content: center;
+#nav-profile-tab{
+    /* display: flex; */
+    /* justify-content: center; */
+    align-items: center;
 }
 .user-stats{
     text-align: center !important;
@@ -72,7 +76,9 @@
     }
     .gameplays-container{
         color: #fff;
-        /* background-color: #febe28; */
+        background-color: #febe28;
+        text-align: center !important;
+
     }
     .has-left-curve{
         border-bottom-left-radius: 40px;

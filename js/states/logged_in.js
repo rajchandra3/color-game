@@ -37,14 +37,23 @@ const populateGameplays = (gameplays)=>{
 
 }
 let update_progress_bar = (user)=>{
-    const success_percentage = user.total_success/user.total_game_play*100;
-    const failure_percentage = user.total_failure/user.total_game_play*100;
-    document.getElementById('success-pbar').style.width = `${success_percentage}%`;
-    document.getElementById('success-pbar').setAttribute('aria-valuenow',`${success_percentage}`);
-    document.getElementById('success-pbar').innerHTML=`<b>wins (${user.total_success})</b>`;
-    document.getElementById('failure-pbar').style.width = `${failure_percentage}%`;
-    document.getElementById('failure-pbar').setAttribute('aria-valuenow',`${failure_percentage}`);
-    document.getElementById('failure-pbar').innerHTML=`<b>losses (${user.total_failure})</b>`;
+    console.log('updating progress bar...');
+    if(user.total_game_play){
+        const success_percentage = user.total_success/user.total_game_play*100;
+        const failure_percentage = user.total_failure/user.total_game_play*100;
+        document.getElementById('success-pbar').style.width = `${success_percentage}%`;
+        document.getElementById('success-pbar').setAttribute('aria-valuenow',`${success_percentage}`);
+        document.getElementById('success-pbar').innerHTML=`<b>wins (${user.total_success})</b>`;
+        document.getElementById('failure-pbar').style.width = `${failure_percentage}%`;
+        document.getElementById('failure-pbar').setAttribute('aria-valuenow',`${failure_percentage}`);
+        document.getElementById('failure-pbar').innerHTML=`<b>losses (${user.total_failure})</b>`;
+        document.getElementById('temp-pbar').style.width = `0%`;
+        document.getElementById('temp-pbar').setAttribute('aria-valuenow','0');
+    }else{
+        document.getElementById('temp-pbar').style.width = `100%`;
+        document.getElementById('temp-pbar').setAttribute('aria-valuenow','100');
+        document.getElementById('temp-pbar').innerHTML=`<b>You haven't played any game!</b>`;
+    }
 }
 const exec = ()=>{
     console.log(`Setting logged in user's attributes...`);

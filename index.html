@@ -17,8 +17,8 @@
         <meta http-equiv="pragma" content="no-cache" />
         <meta name="rating" content="General">
         <meta name="author" content="Raj Chandra ">
-        <meta name="title" content="Color Tiles by Raj Chandra" />
-        <meta name="description" content="Play the game loved by thousands of kids around the world, all you need to do is select the correct tile." />
+        <meta name="title" content="Color Tile by Raj Chandra" />
+        <meta name="description" content="Challenge yourself to play the color tile game loved by thousands of kids around the world, all you need to do is select the correct tile!" />
         <meta name="keywords" content="Raj Chandra, colors, color game, entertainment, free games, games for kids" />
         <meta name="copyright" content="Raj Chandra " />
         <meta name="rating" content="General" />
@@ -26,24 +26,23 @@
         <meta name="creator" content="Raj Chandra " />
         <meta itemprop="name" content="Raj Chandra " />
         <meta itemprop="image" content="https://www.rajchandra.me/images/favicon.png" />
-        <meta itemprop="keywords" content="Raj Chandra, colors, color game, entertainment, free games, games for kids" />
-        <meta property="og:title" content="Color Tiles by Raj Chandra">
+        <meta itemprop="keywords" content="Raj Chandra, colors, color game, entertainment, free games, games for kids, color tile" />
+        <meta property="og:title" content="Color Tile by Raj Chandra">
         <meta property="og:site_name" content="Color Tiles by Raj Chandra">
         <meta name="og:email" content="mail@rajchandra.me" />
         <meta property="og:url" content="https://color-tile.rajchandra.me">
-        <meta property="og:description" content="Play the game loved by thousands of kids around the world, all you need to do is select the correct tile.">
+        <meta property="og:description" content="Challenge yourself to play the color tile game loved by thousands of kids around the world, all you need to do is select the correct tile!">
         <meta property="fb:admins" content="Raj Chandra" />
         <meta name="twitter:domain" content="https://color-tile.rajchandra.me" />
         <meta name="twitter:card" content="https://www.rajchandra.me/images/favicon.png">
         <meta name="twitter:site" content="Raj Chandra">
         <meta name="twitter:creator" content="Raj Chandra">
-        <meta name="twitter:title" content="Color Tiles by Raj Chandra">
-        <meta name="twitter:description" content="Play the game loved by thousands of kids around the world, all you need to do is select the correct tile.">
+        <meta name="twitter:title" content="Color Tile by Raj Chandra">
+        <meta name="twitter:description" content="Challenge yourself to play the color tile game loved by thousands of kids around the world, all you need to do is select the correct tile!">
         <meta name="twitter:image" content="https://www.rajchandra.me/images/favicon.png">
         <link rel="stylesheet" type="text/css" href="/css/color.css">
         <link rel="stylesheet" type="text/css" href="/css/profile.css">
         <link rel="stylesheet" type="text/css" href="/css/animate.css">
-
         <!-- import fonts -->
         <link href="https://fonts.googleapis.com/css?family=Ubuntu&display=swap" rel="stylesheet">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/js/all.min.js"></script>
@@ -58,7 +57,7 @@
         <!-- import google signin -->
         <!-- <meta name="google-signin-scope" content="profile email"> -->
         <meta name="google-signin-client_id" content="843832086130-3gvh6ucajv3j0kcldpuij5oj5ttse1in.apps.googleusercontent.com">
-        <script src="https://apis.google.com/js/platform.js?onload=init" async defer></script>
+        <script src="https://apis.google.com/js/platform.js" async defer></script>
 
         <!-- import js files -->
         <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
@@ -84,7 +83,7 @@
                                     src="" 
                                     alt="current user image" 
                                     height="30" 
-                                    class="user-image rounded-circle">
+                                    class="user-image no-border rounded-circle">
                             </a>
                         </div>
                     </nav>
@@ -121,8 +120,9 @@
                                 <div class="col-xs-4 p-5 m-2 square btn btn-primary bounceInRight animated"></div>
     
                                 <!-- show lifetime game progress -->
-                                <div class="col-sm-12 p-2">
+                                <div class="col-sm-12 p-2 progress-container">
                                     <div class="progress">
+                                        <div class="progress-bar" id="temp-pbar" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
                                         <div class="progress-bar bg-success" id="success-pbar" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
                                         <div class="progress-bar bg-danger" id="failure-pbar" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
@@ -177,14 +177,14 @@
                                         </table>
                                     </div>
                                     <!-- auth btn container -->
-                                    <div class="col-lg-12 col-sm-12 auth-cta-container p-2">
-                                        <div class="g-signin2" id="g-signin-btn"></div>
+                                    <div class="col-lg-12 col-sm-12 auth-cta-container p-5">
+                                        <div id="g-signin-btn"></div>
                                         <button class="btn btn-light" id="g-signout-btn">
                                             <img 
                                                 src="" 
                                                 alt="user image" 
-                                                height="40" 
-                                                class="user-image rounded-circle"> &nbsp; Logout
+                                                height="30" 
+                                                class="user-image no-border rounded-circle"> &nbsp; Logout
                                         </button>
                                     </div>
                                 </div>
@@ -212,18 +212,6 @@
             </div>
         </div>            
     </div>
-    <!-- initiate google auth -->
-    <script>
-        function init() {
-            gapi.load('auth2', function() {
-                /* Ready. Make a call to gapi.auth2.init or some other API */
-                auth2 = gapi.auth2.init({
-                    client_id: '843832086130-3gvh6ucajv3j0kcldpuij5oj5ttse1in.apps.googleusercontent.com',
-                    scope: 'profile'
-                });
-            }); 
-        }
-    </script>
     <!-- import js -->
     <script type="module" src="/js/main.js"></script>
     <script type="module" src="/js/requests/components/auth.js"></script>

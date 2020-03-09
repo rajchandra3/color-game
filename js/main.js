@@ -105,12 +105,14 @@ const reset_all = ()=>{
 reset_all();
 document.getElementById("reset-btn").addEventListener("click",reset_all);
 
-// register service worker 
-if ("serviceWorker" in navigator) {
-    window.addEventListener("load", function() {
-      navigator.serviceWorker
-        .register("/serviceWorker.js")
-        .then(res => console.log("service worker registered"))
-        .catch(err => console.log("service worker not registered", err))
-    })
-  }
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', ()=> {
+        navigator.serviceWorker.register('/service_worker.js').then((registration)=> {
+            // Registration was successful
+            console.log('ServiceWorker registration successful with scope: ', registration.scope);
+        }, (err)=> {
+            // registration failed :(
+            console.log('ServiceWorker registration failed: ', err);
+        });
+    });
+}

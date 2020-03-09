@@ -3,7 +3,7 @@ const CACHE_NAME = "color-tile-rajchandra-me";
 const urlsToCache = [
   "/index.html",
   "/css/min/color.min.css",
-  "/css/min/animate.min.css",
+//   "/css/min/animate.min.css",
   "/css/min/profile.min.css",
   "/js/requests/components/auth.js",
   "/js/requests/components/gameplays.js",
@@ -30,7 +30,7 @@ self.addEventListener('install', function(event) {
 });
 
 self.addEventListener('fetch', function(event) {
-    console.log('INSIDE FRTCH --->',event.request.url);
+    // console.log('INSIDE FETCH --->',event.request.url);
     event.respondWith(
       caches.match(event.request)
         .then(function(response) {

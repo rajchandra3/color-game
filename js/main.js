@@ -54,6 +54,11 @@ const reset_all = ()=>{
     StateManager.handle_state_change();
     let blocks = document.querySelectorAll(".square");
     const correct_color_pos = Math.floor(Math.random() * 6); // storing correct tile number
+    const correct_color = {
+        red:getRandomColor(),
+        green:getRandomColor(),
+        blue:getRandomColor()
+    }
     let data = []; // to store all the blocks rgb color as objects
     let message_block = document.getElementById("message-id");
     // let num=1;

@@ -72,6 +72,7 @@ const populateLeaderboard = (users)=>{
                 <td>${player.score.toFixed(1)}</td>
             </tr>
         `);
+        if(i>5) break;
     }
 }
 const exec = ()=>{

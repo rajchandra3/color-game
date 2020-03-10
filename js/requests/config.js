@@ -10,7 +10,7 @@ const urls={
 const getAuthConfig = ()=>{
     //return auth headers
     return {
-        Authorization: Cookie.checkCookie(Cookie.cookieName)?`Bearer ${cookie.getCookie(cookie.cookieName)}`:null
+        Authorization: Cookie.checkCookie(Cookie.cookieName)?`Bearer ${Cookie.getCookie(Cookie.cookieName)}`:null
     }
 }
 

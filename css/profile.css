@@ -7,6 +7,9 @@
 .no-border{
     border: none !important;
 }
+.border-rounded-half{
+    border-radius: 0.3rem;
+}
 .user-image{
     border: 5px solid #fff;
 }

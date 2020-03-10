@@ -17,11 +17,44 @@ if(Config.env==='production'){
     `;
 }
 
-const getRandomColor = ()=>{return (Math.floor(Math.random() * 256));}
+const initializeGame = ()=>{
+    return ({
+        attempts:1,
+        message_displayed:false,
+        correct_color:{
+            color:{
+                red:getRandomColor(),
+                green:getRandomColor(),
+                blue:getRandomColor(),
+            },
+            position:Math.floor(Math.random() * 6)
+        },
+        hard:50,
+        medium:120,
+        easy:256,
+        options:[],
+        message_block:document.getElementById("message-id"),
+        tiles:document.querySelectorAll(".square")
+    })
+}
 
-const paint_all_tiles = (tiles,color)=>{
+const getRandomColor = ()=>{
+    return (Math.floor(Math.random() * 256));
+    // switch(level){
+    //     case 'easy':
+    //         return (Math.floor(Math.random() * 256));
+    //     case 'medium':
+    //         return (Math.floor(Math.random() * 256));
+    //     case 'hard':
+    //     default:
+    //         return (Math.floor(Math.random() * 256));
+    // }
+}
+
+const paint_with_color = (tiles,color)=>{
+    let bg_color=`rgb(${color.red},${color.green},${color.blue})`;
     for(let tile of tiles){
-        tile.style.background=tiles[color].style.background;
+        tile.style.background=bg_color;
     }
 }
 
@@ -49,69 +82,72 @@ const restart_game_cta = (choice)=>{
     }
 }
 
-const reset_all = ()=>{
-    restart_game_cta('hide')
-    StateManager.handle_state_change();
-    let blocks = document.querySelectorAll(".square");
-    const correct_color_pos = Math.floor(Math.random() * 6); // storing correct tile number
-    const correct_color = {
-        red:getRandomColor(),
-        green:getRandomColor(),
-        blue:getRandomColor()
+const click_handler = (e,game_vars)=>{
+    // console.log(e.target.style.background,game_vars.options[game_vars.correct_color.position].style.background);
+    //user won
+    if(game_vars.attempts>0 && game_vars.attempts<5 && e.target.style.background===game_vars.tiles[game_vars.correct_color.position].style.background && !game_vars.message_displayed)
+    {
+        game_vars.message_block.textContent=`${phrases[generateRandomNumber()]} You guessed it in ${game_vars.attempts}${getSuperscript(game_vars.attempts)} attempt.`;
+        game_vars.message_displayed=true;
+        paint_with_color(game_vars.tiles,game_vars.correct_color.color);
+        restart_game_cta('show');
+        Gameplay.add(true,game_vars.attempts); //save gameplays
     }
-    let data = []; // to store all the blocks rgb color as objects
-    let message_block = document.getElementById("message-id");
-    // let num=1;
-    let num = 1;
-    let message_displayed = false;
-    message_block.textContent=`Start tapping below ...`;
-
-    for(let i=0;i<6;i++) {
-        data.push(paint_tile_randomly(blocks[i]));
-        blocks[i].addEventListener("click",(e)=>{
-            console.log(num);
-            //user won
-            if(num>0 && num<5 && e.target.style.background===blocks[correct_color_pos].style.background && !message_displayed)
-            {
-                message_block.textContent=`${phrases[generateRandomNumber()]} You guessed it in ${num}${getSuperscript(num)} attempt.`;
-                message_displayed=true;
-                paint_all_tiles(blocks,correct_color_pos);
-                restart_game_cta('show');
-                Gameplay.add(true,num); //save gameplays
-            }
-            //user lost
-            else if(num==5 && !message_displayed)
-            {
-                message_block.textContent="You lose, try again!";
-                message_displayed=true;
-                paint_all_tiles(blocks,correct_color_pos);
-                // e.target.style.background="white"; //make this tile white
-                restart_game_cta('show');
-                Gameplay.add(false,num); //save gameplays
-            }
-            //user still has more attempts
-            else if(!message_displayed)
-            {
-                message_block.textContent="Oops! That is wrong...";
-                e.target.style.background="white";
-                num++;
-            }
-        });
+    //user lost
+    else if(game_vars.attempts==5 && !game_vars.message_displayed)
+    {
+        game_vars.message_block.textContent="You lose, try again!";
+        game_vars.message_displayed=true;
+        paint_with_color(game_vars.tiles,game_vars.correct_color.color);
+        // e.target.style.background="white"; //make this tile white
+        restart_game_cta('show');
+        Gameplay.add(false,game_vars.attempts); //save gameplays
     }
-
-    //set color value in rgb labels
-    let r=data[correct_color_pos].red/256*100;
-    let g=data[correct_color_pos].green/256*100;
-    let b=data[correct_color_pos].blue/256*100;
-    document.getElementById("r").textContent=Math.round(r);
-    document.getElementById("g").textContent=Math.round(g);
-    document.getElementById("b").textContent=Math.round(b);
+    //user still has more attempts
+    else if(!game_vars.message_displayed)
+    {
+        game_vars.message_block.textContent="Oops! That is wrong...";
+        e.target.style.background="white";
+        game_vars.attempts++;
+    }
 }
 
-reset_all();
+const paint_game = (game_vars)=>{
+    let blocks = game_vars.tiles;
+    for(let i=0;i<6;i++) {
+        if(i!==game_vars.correct_color.position){
+            game_vars.options.push(paint_tile_randomly(blocks[i]));
+            blocks[i].addEventListener("click",(e)=>{
+                click_handler(e,game_vars);
+            });
+        }else{
+            game_vars.options.push(game_vars.correct_color.color);
+            blocks[i].style.background = `rgb(${game_vars.correct_color.color.red},${game_vars.correct_color.color.green},${game_vars.correct_color.color.blue})`;;
+            blocks[i].addEventListener("click",(e)=>{
+                click_handler(e,game_vars);
+            });
+        }
+    }
+}
+
+const start = ()=>{
+    restart_game_cta('hide');
+    StateManager.handle_state_change();
+    const game_vars = initializeGame();
+    game_vars.message_block.textContent=`Start tapping below ...`;
+    document.getElementById("r").textContent=Math.round(game_vars.correct_color.color.red/256*100);
+    // document.getElementById("red-label").style.background=`rgb(${game_vars.correct_color.color.red},255,255)`;
+    document.getElementById("g").textContent=Math.round(game_vars.correct_color.color.green/256*100);
+    // document.getElementById("green-label").style.background=`rgb(255,${game_vars.correct_color.color.green},255)`;
+    document.getElementById("b").textContent=Math.round(game_vars.correct_color.color.blue/256*100);
+    // document.getElementById("blue-label").style.background=`rgb(255,255,${game_vars.correct_color.color.blue})`;
+    paint_game(game_vars);
+}
+
+start();
 
 //button for start again
-document.getElementById("reset-btn").addEventListener("click",reset_all);
+document.getElementById("reset-btn").addEventListener("click",start);
 
 //leaderboard trigger button
 document.getElementById('nav-leaderboard-tab').addEventListener('click',Stats.leaderboard);

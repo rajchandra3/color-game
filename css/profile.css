@@ -53,7 +53,7 @@
         text-align: left !important;
     }
     .gameplays-container{
-        background-color: #febe28;
+        background-color: #fcb677;
     }
     .has-left-curve{
         font-size: 28px;
@@ -86,8 +86,7 @@
         font-size: 28px;
     }
     .gameplays-container{
-        /* color: #fff; */
-        /* background-color: #febe28; */
+        background-color: #fcb677;
         text-align: center !important;
 
     }

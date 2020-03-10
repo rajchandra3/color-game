@@ -112,8 +112,9 @@
                     </nav>
                     <!-- tab container -->
                     <div class="tab-content align-center" id="nav-tabContent">
+                        <!-- game container -->
                         <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-                            <!-- game container -->
+                            <!-- labels -->
                             <div class="col-lg-12 pb-4 pt-4">
                                 <!-- game introduction -->
                                 <p class="font-weight-bolder bounceInRight animated">Can you guess the which color is formed when RED, GREEN and BLUE colors are mixed?</p><br>
@@ -130,9 +131,11 @@
                                     <button type="button" class="btn btn-primary"><strong ><span id="b"></span>%</strong ></button>
                                 </div>
                             </div>
+                            <!-- message container -->
                             <div class="col-lg-12 pb-4 d-flex justify-content-center">
                                 <div id="message-id" class="alert alert-primary font-weight-bolder" role="alert">  </div>
                             </div>
+                            <!-- squares -->
                             <div class="col-lg-12 pb-2">
                                 <!-- game frame -->
                                 <div class="col-xs-4 p-5 m-2 square btn btn-primary bounceInLeft animated"></div>
@@ -151,6 +154,7 @@
                                     </div>
                                 </div>
                             </div>
+                            <!-- start again btn -->
                             <div class="col-lg-12 pb-4 d-flex align-self-center justify-content-center">
                                 <button class="button btn g-blue text-white mt-3 flip animated invisible" id="reset-btn">START AGAIN</button>
                             </div>
@@ -186,18 +190,49 @@
                                     </div>
                                     <!-- past gameplays -->
                                     <div class="col-lg-4 col-sm-12 gameplays-container no-padding no-margin">
-                                        <table class="table text-center">
-                                            <caption class="text-center">Your last 5 gameplays</caption>
-                                            <thead class="thead-dark">
-                                            <tr>
-                                                <th scope="col">Played</th>
-                                                <th scope="col">Status</th>
-                                                <th scope="col">Attempts</th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                            </tbody>
-                                        </table>
+                                        <!-- nav container -->
+                                        <nav class="container-fluid">
+                                            <div class="row nav nav-tabs text-center" id="nav-tab" role="tablist">
+                                                <a class="col nav-item nav-link font-weight-bold active" id="nav-gameplays-tab" data-toggle="tab" href="#nav-gameplays" role="tab" aria-controls="nav-gameplays" aria-selected="true">Gameplays</a>
+                                                <a class="col nav-item nav-link font-weight-bold" id="nav-leaderboard-tab" data-toggle="tab" href="#nav-leaderboard" role="tab" aria-controls="nav-leaderboard" aria-selected="false">Leaderboard</a>
+                                            </div>
+                                        </nav>
+                                        <div class="tab-content align-center" id="nav-tabContent">
+                                            <div class="tab-pane fade show active" id="nav-gameplays" role="tabpanel" aria-labelledby="nav-gameplays-tab">
+                                                <table class="table text-center">
+                                                    <caption class="text-center">Your last 5 gameplays</caption>
+                                                    <thead class="thead-dark">
+                                                        <tr>
+                                                            <th scope="col">Played</th>
+                                                            <th scope="col">Status</th>
+                                                            <th scope="col">Attempts</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody class="tbody-gp">
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <div class="tab-pane fade" id="nav-leaderboard" role="tabpanel" aria-labelledby="nav-leaderboard-tab">
+                                                <div class="progress no-border-radius" id="leaderboard-loader">
+                                                    <div class="progress-bar bg-dark progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+                                                        Loading Leaderboard ...
+                                                    </div>
+                                                </div>
+                                                <table class="table text-center">
+                                                    <caption class="text-center">Top 5 players in the Leaderboard</caption>
+                                                    <thead class="thead-dark">
+                                                        <tr>
+                                                            <th scope="col">#</th>
+                                                            <th scope="col">Games</th>
+                                                            <th scope="col">Success</th>
+                                                            <th scope="col">Score</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody class="tbody-leaderboard">
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
                                     </div>
                                     <!-- auth btn container -->
                                     <div class="col-lg-12 col-sm-12 auth-cta-container p-3">

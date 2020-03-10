@@ -2,6 +2,7 @@ import {phrases,generateRandomNumber,getSuperscript} from './common.js';
 import StateManager from './states/state_manager.js';
 import Gameplay from './requests/components/gameplay.js';
 import Config from './requests/config.js';
+import Stats from './requests/components/user_stats.js';
 
 //put css in html
 if(Config.env==='production'){
@@ -103,7 +104,12 @@ const reset_all = ()=>{
 }
 
 reset_all();
+
+//button for start again
 document.getElementById("reset-btn").addEventListener("click",reset_all);
+
+//leaderboard trigger button
+document.getElementById('nav-leaderboard-tab').addEventListener('click',Stats.leaderboard);
 
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', ()=> {

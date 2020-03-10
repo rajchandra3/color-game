@@ -30,11 +30,15 @@ const populateStats = (stats)=>{
 }
 
 const populateGameplays = (gameplays)=>{
-    $("tbody tr").remove(); 
+    $("tbody-gp tr").remove(); 
     for(let gameplay of gameplays){
-        $('table').find('tbody').append(`<tr><th>${moment(new Date(gameplay.createdAt), "YYYYMMDD").fromNow()}</th><td>${gameplay.won?'success':'failure'}</td><td>${gameplay.attempts}</td></tr>`);
+        $('table').find('.tbody-gp').append(`
+            <tr>
+                <td>${moment(new Date(gameplay.createdAt), "YYYYMMDD").fromNow()}</td>
+                <td>${gameplay.won?'success':'failure'}</td>
+                <td>${gameplay.attempts}</td>
+            </tr>`);
     }
-
 }
 let update_progress_bar = (user)=>{
     console.log('updating progress bar...');
@@ -55,6 +59,21 @@ let update_progress_bar = (user)=>{
         document.getElementById('temp-pbar').innerHTML=`<b>You haven't played any game!</b>`;
     }
 }
+
+const populateLeaderboard = (users)=>{
+    $(".tbody-leaderboard tr").remove(); 
+    let i = 0;
+    for(let player of users){
+        $('table').find('.tbody-leaderboard').append(`
+            <tr>
+                <th>${++i}</th>
+                <td>${player.user.name.fullName.length>15?player.user.name.fullName.slice(0,15)+'...':player.user.name.fullName}</td>
+                <td>${player.total_game_play}</td>
+                <td>${player.score.toFixed(1)}</td>
+            </tr>
+        `);
+    }
+}
 const exec = ()=>{
     console.log(`Setting logged in user's attributes...`);
     document.getElementById('g-signin-btn').style.display='none';
@@ -70,4 +89,4 @@ const exec = ()=>{
     Gameplay.getUserGameplays(); //get new gameplays
 }
 
-export default {exec, populateStats, populateGameplays, update_progress_bar};
+export default {exec, populateStats, populateGameplays, update_progress_bar, populateLeaderboard};

@@ -1,4 +1,4 @@
-import cookie from './cookie.js';
+import Cookie from './cookie.js';
 const toggler = window.location.hostname === 'color-tile.rajchandra.me' ? 1 : 0;
 const env=toggler?'production':'development';
 
@@ -10,7 +10,7 @@ const urls={
 const getAuthConfig = ()=>{
     //return auth headers
     return {
-        Authorization: `Bearer ${cookie.getCookie(cookie.cookieName)}`
+        Authorization: Cookie.checkCookie(Cookie.cookieName)?`Bearer ${cookie.getCookie(cookie.cookieName)}`:null
     }
 }
 

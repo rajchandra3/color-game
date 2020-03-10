@@ -1,4 +1,5 @@
 import Store from './../requests/localstorage.js';
+import Stats from '../requests/components/user_stats.js';
 
 const add_user_image = (user_images)=>{
     for(let user_image of user_images){
@@ -27,6 +28,21 @@ const set_metadata = ()=>{
     })
 }
 
+const populateLeaderboard = (users)=>{
+    $(".tbody-leaderboard tr").remove(); 
+    let i = 0;
+    for(let player of users){
+        $('table').find('.tbody-leaderboard').append(`
+            <tr>
+                <th>${++i}</th>
+                <td>${player.user.name.fullName.length>15?player.user.name.fullName.slice(0,15)+'...':player.user.name.fullName}</td>
+                <td>${player.total_game_play}</td>
+                <td>${player.score.toFixed(1)}</td>
+            </tr>
+        `);
+    }
+}
+
 const exec = ()=>{
     set_metadata();
     console.log(`Setting anonymous attributes...`);
@@ -41,10 +57,10 @@ const exec = ()=>{
     document.querySelector('.progress-container').style.display='none';
     document.querySelector('.stats-wrapper').innerHTML=`<div class='p-3'>You must signin to unlock your stats</div>`;
     document.querySelector('.gameplays-container').style.textAlign='left';
-    document.querySelector('.gameplays-container').innerHTML=`
+    document.querySelector('#nav-gameplays').innerHTML=`
         <h3 class='p-4 text-monospace'>Your Gameplays</h3>
         <div class='p-3 text-monospace'>You must signin to unlock your gameplays</div>
-        `;
+    `;
 }
 
-export default {exec};
+export default {exec, populateLeaderboard};

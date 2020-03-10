@@ -1,6 +1,14 @@
 html, body, .container{
     font-family: 'Ubuntu';
 }
+a:hover{
+    text-decoration: none;
+    color: #444;
+}
+/* a{
+    text-decoration: none;
+    color: #444;
+} */
 .align-center{
     text-align: center !important;
     align-items: center;
@@ -8,6 +16,10 @@ html, body, .container{
 }
 .add-shadow{
     box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+}
+.no-border-radius{
+    border: none !important;
+    border-radius: 0px !important;
 }
 .g-lawrencium{
     color: azure;

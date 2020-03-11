@@ -30,7 +30,7 @@ const populateStats = (stats)=>{
 }
 
 const populateGameplays = (gameplays)=>{
-    $("tbody-gp tr").remove(); 
+    $(".tbody-gp tr").remove(); 
     for(let gameplay of gameplays){
         $('table').find('.tbody-gp').append(`
             <tr>

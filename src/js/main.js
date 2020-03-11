@@ -1,21 +1,6 @@
 import {phrases,generateRandomNumber,getSuperscript} from './common.js';
 import StateManager from './states/state_manager.js';
 import Gameplay from './requests/components/gameplay.js';
-import Config from './requests/config.js';
-import Stats from './requests/components/user_stats.js';
-
-//put css in html
-if(Config.env==='production'){
-    document.querySelector('head').innerHTML += `
-    <link rel="stylesheet" type="text/css" href="/css/min/color.min.css">
-    <link rel="stylesheet" type="text/css" href="/css/min/profile.min.css">
-    `;
-}else{
-    document.querySelector('head').innerHTML += `
-    <link rel="stylesheet" type="text/css" href="/css/color.css">
-    <link rel="stylesheet" type="text/css" href="/css/profile.css">
-    `;
-}
 
 const initializeGame = ()=>{
     return ({
@@ -58,11 +43,25 @@ const paint_with_color = (tiles,color)=>{
     }
 }
 
-const paint_tile_randomly = (tile)=>{
-    // generating random colors using Math.random() * (max - min) + min
-    let random_color={red: getRandomColor(), green: getRandomColor(), blue: getRandomColor()};
-    tile.style.background = `rgb(${random_color.red},${random_color.green},${random_color.blue})`;;
-    return (random_color); //changing block background color
+const paint_tile_randomly = (tile,game_vars)=>{
+    let color_exists=false;
+    while(!color_exists){
+        let random_color={red: getRandomColor(), green: getRandomColor(), blue: getRandomColor()};
+        for(let option of game_vars.options){
+            if(
+                option.red==random_color.red ||
+                option.green==random_color.green ||
+                option.blue==random_color.blue
+            ){
+                color_exists=true;
+                break;
+            }
+        }
+        if(!color_exists){
+            tile.style.background = `rgb(${random_color.red},${random_color.green},${random_color.blue})`;
+            return (random_color); //changing block background color
+        }
+    }
 }
 
 const restart_game_cta = (choice)=>{
@@ -116,7 +115,7 @@ const paint_game = (game_vars)=>{
     let blocks = game_vars.tiles;
     for(let i=0;i<6;i++) {
         if(i!==game_vars.correct_color.position){
-            game_vars.options.push(paint_tile_randomly(blocks[i]));
+            game_vars.options.push(paint_tile_randomly(blocks[i],game_vars));
             blocks[i].addEventListener("click",(e)=>{
                 click_handler(e,game_vars);
             });
@@ -148,18 +147,3 @@ start();
 
 //button for start again
 document.getElementById("reset-btn").addEventListener("click",start);
-
-//leaderboard trigger button
-document.getElementById('nav-leaderboard-tab').addEventListener('click',Stats.leaderboard);
-
-if ('serviceWorker' in navigator) {
-    window.addEventListener('load', ()=> {
-        navigator.serviceWorker.register('/service_worker.js').then((registration)=> {
-            // Registration was successful
-            console.log('ServiceWorker registration successful with scope: ', registration.scope);
-        }, (err)=> {
-            // registration failed :(
-            console.log('ServiceWorker registration failed: ', err);
-        });
-    });
-}

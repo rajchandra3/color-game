@@ -37,10 +37,9 @@
     display: flex;
     justify-content: center;
 }
-.brand-icons{
+.white-icons{
     filter:  brightness(0) invert(1);
 }
-
 @media (min-width: 768px){
     .user-img-container{
         color: #fff;

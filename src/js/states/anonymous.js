@@ -1,4 +1,4 @@
-import Store from './../requests/localstorage.js';
+import Store from '../requests/localstorage.js';
 import Stats from '../requests/components/user_stats.js';
 
 const add_user_image = (user_images)=>{
@@ -40,7 +40,6 @@ const populateLeaderboard = (users)=>{
                 <td>${player.score.toFixed(1)}</td>
             </tr>
         `);
-        if(i>5) break;
     }
 }
 

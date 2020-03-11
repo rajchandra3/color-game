@@ -26,7 +26,7 @@
         <meta name="coverage" content="Worldwide" />
         <meta name="creator" content="Raj Chandra " />
         <meta itemprop="name" content="Raj Chandra " />
-        <meta itemprop="image" content="images/favicon.png" />
+        <meta itemprop="image" content="src/images/favicon.png" />
         <meta itemprop="keywords" content="Raj Chandra, colors, color game, entertainment, free games, games for kids, color tile" />
         <meta property="og:title" content="Color Tile by Raj Chandra">
         <meta property="og:site_name" content="Color Tiles by Raj Chandra">
@@ -35,25 +35,25 @@
         <meta property="og:description" content="Challenge yourself to play the color tile game loved by thousands of kids around the world, all you need to do is select the correct tile!">
         <meta property="fb:admins" content="Raj Chandra" />
         <meta name="twitter:domain" content="https://color-tile.rajchandra.me" />
-        <meta name="twitter:card" content="images/favicon.png">
+        <meta name="twitter:card" content="src/images/favicon.png">
         <meta name="twitter:site" content="Raj Chandra">
         <meta name="twitter:creator" content="Raj Chandra">
         <meta name="twitter:title" content="Color Tile by Raj Chandra">
         <meta name="twitter:description" content="Challenge yourself to play the color tile game loved by thousands of kids around the world, all you need to do is select the correct tile!">
-        <meta name="twitter:image" content="images/favicon.png">
+        <meta name="twitter:image" content="src/images/favicon.png">
 
         <!-- manifest file -->
         <link rel="manifest" href="manifest.json" />
 
         <!-- ios support -->
-        <link rel="apple-touch-icon" href="images/icons/icon-72x72.png" />
-        <link rel="apple-touch-icon" href="images/icons/icon-96x96.png" />
-        <link rel="apple-touch-icon" href="images/icons/icon-128x128.png" />
-        <link rel="apple-touch-icon" href="images/icons/icon-144x144.png" />
-        <link rel="apple-touch-icon" href="images/icons/icon-152x152.png" />
-        <link rel="apple-touch-icon" href="images/icons/icon-192x192.png" />
-        <link rel="apple-touch-icon" href="images/icons/icon-384x384.png" />
-        <link rel="apple-touch-icon" href="images/icons/icon-512x512.png" />
+        <link rel="apple-touch-icon" href="src/images/icons/icon-72x72.png" />
+        <link rel="apple-touch-icon" href="src/images/icons/icon-96x96.png" />
+        <link rel="apple-touch-icon" href="src/images/icons/icon-128x128.png" />
+        <link rel="apple-touch-icon" href="src/images/icons/icon-144x144.png" />
+        <link rel="apple-touch-icon" href="src/images/icons/icon-152x152.png" />
+        <link rel="apple-touch-icon" href="src/images/icons/icon-192x192.png" />
+        <link rel="apple-touch-icon" href="src/images/icons/icon-384x384.png" />
+        <link rel="apple-touch-icon" href="src/images/icons/icon-512x512.png" />
         <meta name="apple-mobile-web-app-status-bar" content="#302b63" />
         <!-- import fonts -->
         <link href="https://fonts.googleapis.com/css?family=Ubuntu&display=swap" rel="stylesheet">
@@ -75,7 +75,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 
         <title>Color Tile by Raj Chandra</title>
-        <link rel="icon" href="images/favicon.png" type="image/png" sizes="16x16">
+        <link rel="icon" href="src/images/favicon.png" type="image/png" sizes="16x16">
 
         <!-- Global site tag (gtag.js) - Google Analytics -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=UA-99147431-10"></script>
@@ -90,10 +90,12 @@
     </head>
     <body>
         <div class="container text-center">
-            <div class="row justify-content-md-center add-shadow">
+            <div class="row add-shadow">
+                <!-- header -->
                 <div class="col-lg-12 p-4 g-lawrencium">
                     <h1 class="font-weight-bolder bounceInDown animated">Color Tile</h1>
                 </div>
+                 <!-- game components -->
                 <div class="col-lg-12">
                     <!-- nav container -->
                     <nav class="container-fluid no-padding">
@@ -157,6 +159,12 @@
                             <!-- start again btn -->
                             <div class="col-lg-12 pb-4 d-flex align-self-center justify-content-center">
                                 <button class="button btn g-blue text-white mt-3 flip animated invisible" id="reset-btn">START AGAIN</button>
+                            </div>
+                            <!-- share button -->
+                            <div class="col-lg-12 p-2 pb-3">
+                                <button class="btn btn-success text-white mb-5" id="share-button">Share with Friends&nbsp;
+                                    <img src="src/images/share-icon.svg" class="white-icons m-1" height="25px" width="25px" aria-hidden="true">
+                                </button>
                             </div>
                         </div>
                         <!-- profile container -->
@@ -246,33 +254,34 @@
                                                 class="user-image no-border rounded-circle"> &nbsp; Logout
                                         </button>
                                     </div>
+                                    <!-- footer -->
+                                    <div class="col-lg-12 bg-222">
+                                        <!-- footer for apps -->
+                                        <footer class="p-4 m-1 text-white text-center">
+                                            &copy; 
+                                            2017 - <span id="thisYear"></span> 
+                                            <a href="https://www.rajchandra.me" target="_blank">Raj Chandra</a>. All Rights Reserved. <br>
+                                            <a href="https://www.rajchandra.me" target="_blank"><img src="src/images/brand-icons/globe.svg" class="white-icons text-white m-2" height="25px" width="25px" aria-hidden="true" target="_blank"></a> &nbsp;
+                                            <a href="https://www.twitter.com/raj_chandra3" target="_blank"><img src="src/images/brand-icons/twitter.svg" class="white-icons text-white m-2" height="25px" width="25px" aria-hidden="true" target="_blank"></a> &nbsp;
+                                            <a href="https://www.linkedin.com/in/rajchandra3/" target="_blank"><img src="src/images/brand-icons/linkedin.svg" height="25px" width="25px" class="white-icons text-white m-2" aria-hidden="true"></a>
+                                        </footer>
+                                        <!-- script for year in footer -->
+                                        <script>
+                                            var d = new Date();
+                                            document.getElementById('thisYear').innerHTML = d.getFullYear();
+                                        </script>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <!-- footer -->
-                <div class="col-lg-12 bg-222">
-                    <!-- footer for apps -->
-                    <footer class="p-4 m-1 text-white text-center">
-                        &copy; 
-                        2017 - <span id="thisYear"></span> 
-                        <a href="https://www.rajchandra.me" target="_blank">Raj Chandra</a>. All Rights Reserved. <br>
-                        <a href="https://www.rajchandra.me" target="_blank"><img src="images/brand-icons/globe.svg" class="brand-icons text-white m-2" height="25px" width="25px" aria-hidden="true" target="_blank"></a> &nbsp;
-                        <a href="https://www.twitter.com/raj_chandra3" target="_blank"><img src="images/brand-icons/twitter.svg" class="brand-icons text-white m-2" height="25px" width="25px" aria-hidden="true" target="_blank"></a> &nbsp;
-                        <a href="https://www.linkedin.com/in/rajchandra3/" target="_blank"><img src="images/brand-icons/linkedin.svg" height="25px" width="25px" class="brand-icons text-white m-2" aria-hidden="true"></a>
-                    </footer>
-                    <!-- script for year in footer -->
-                    <script>
-                        var d = new Date();
-                        document.getElementById('thisYear').innerHTML = d.getFullYear();
-                    </script>
-                </div>
             </div>
         </div>
     <!-- import js -->
-    <script type="module" src="/js/main.js"></script>
-    <script type="module" src="/js/requests/components/auth.js"></script>
+    <script type="module" src="/src/js/index.js"></script>
+    <script type="module" src="/src/js/main.js"></script>
+    <script type="module" src="/src/js/requests/components/auth.js"></script>
 
    </body>
 </html>

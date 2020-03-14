@@ -1,7 +1,7 @@
 # Created by Raj Chandra
 # This script minifies css files by removing tailing spaces and new lines
 
-for file in ./css/*
+for file in ./src/css/*
 do
     echo "@$file"
     #get filename

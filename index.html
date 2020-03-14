@@ -86,7 +86,19 @@
 
             gtag('config', 'UA-99147431-10');
         </script>
+        
+        <!-- Look Smart -->
+        <script type='text/javascript'>
+            window.smartlook||(function(d) {
+              var o=smartlook=function(){ o.api.push(arguments)},h=d.getElementsByTagName('head')[0];
+              var c=d.createElement('script');o.api=new Array();c.async=true;c.type='text/javascript';
+              c.charset='utf-8';c.src='https://rec.smartlook.com/recorder.js';h.appendChild(c);
+              })(document);
+              smartlook('init', '0104b725309900ab23423a34a7eecf199418f5b1');
+          </script>
 
+        <!-- Google ads -->
+        <script data-ad-client="ca-pub-8598751574376549" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     </head>
     <body>
         <div class="container text-center">
@@ -119,36 +131,60 @@
                             <!-- labels -->
                             <div class="col-lg-12 pb-4 pt-4">
                                 <!-- game introduction -->
-                                <p class="font-weight-bolder bounceInRight animated">Can you guess the which color is formed when RED, GREEN and BLUE colors are mixed?</p><br>
-                                <div class="btn-group m-1" role="group" aria-label="Red color label">
-                                    <button type="button" class="btn btn-danger">Red</button>
-                                    <button type="button" class="btn btn-danger"><strong ><span id="r"></span>%</strong ></button>
-                                </div>
-                                <div class="btn-group m-1" role="group" aria-label="Green color label">
-                                    <button type="button" class="btn btn-success">Green</button>
-                                    <button type="button" class="btn btn-success"><strong ><span id="g"></span>%</strong ></button>
-                                </div>
-                                <div class="btn-group m-1" role="group" aria-label="Blue color label">
-                                    <button type="button" class="btn btn-primary">Blue</button>
-                                    <button type="button" class="btn btn-primary"><strong ><span id="b"></span>%</strong ></button>
+                                <p class="font-weight-bolder bounceInRight animated">Can you guess which color is formed when RED, GREEN and BLUE are mixed?</p><br>
+                                <div class="container-fluid">
+                                    <div class="row d-flex align-self-center justify-content-center">
+                                        <div class="col-xs-4 m-1 centered label-container" aria-label="Red color label">
+                                            <div class="label-container">
+                                                <div id="activeBorder" class="active-border add-shadow red-label">
+                                                    <div id="circle-red" class="circle">
+                                                        <span class="prec c-red"></span>
+                                                        <span id="startDeg" class="0"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- <div class="font-weight-bolder p-2"><span id="r"></span>%</div> -->
+                                        </div>
+                                        <div class="col-xs-4 m-1 centered label-container" aria-label="Green color label">
+                                            <div class="label-container">
+                                                <div id="activeBorder" class="active-border add-shadow green-label">
+                                                    <div id="circle-green" class="circle">
+                                                        <span class="prec c-green"></span>
+                                                        <span id="startDeg" class="0"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-4 m-1 centered label-container" aria-label="Blue color label">
+                                            <div class="label-container">
+                                                <div id="activeBorder" class="active-border add-shadow blue-label">
+                                                    <div id="circle-blue" class="circle">
+                                                        <span class="prec c-blue"></span>
+                                                        <span id="startDeg" class="0"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- <div class="font-weight-bolder p-2"><span id="b"></span>%</div> -->
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <!-- message container -->
                             <div class="col-lg-12 pb-4 d-flex justify-content-center">
                                 <div id="message-id" class="alert alert-primary font-weight-bolder" role="alert">  </div>
-                            </div>
+                            </div> 
                             <!-- squares -->
                             <div class="col-lg-12 pb-2">
                                 <!-- game frame -->
-                                <div class="col-xs-4 p-5 m-2 square btn btn-primary bounceInLeft animated"></div>
-                                <div class="col-xs-4 p-5 m-2 square btn btn-primary bounceInRight animated"></div>
-                                <div class="col-xs-4 p-5 m-2 square btn btn-primary bounceInDown animated"></div>
-                                <div class="col-xs-4 p-5 m-2 square btn btn-primary bounceInDown animated"></div>
-                                <div class="col-xs-4 p-5 m-2 square btn btn-primary fadeInUpBig animated"></div>
-                                <div class="col-xs-4 p-5 m-2 square btn btn-primary bounceInRight animated"></div>
+                                <div class="col-xs-3 btn square p-4 m-2 text-white add-shadow"></div>
+                                <div class="col-xs-3 btn square p-4 m-2 text-white add-shadow"></div>
+                                <div class="col-xs-3 btn square p-4 m-2 text-white add-shadow"></div>
+                                <div class="col-xs-3 btn square p-4 m-2 text-white add-shadow"></div>
+                                <div class="col-xs-3 btn square p-4 m-2 text-white add-shadow"></div>
+                                <div class="col-xs-3 btn square p-4 m-2 text-white add-shadow"></div>
     
                                 <!-- show lifetime game progress -->
-                                <div class="col-sm-12 p-2 progress-container">
+                                <div class="col-sm-12 pt-4 progress-container">
                                     <div class="progress">
                                         <div class="progress-bar" id="temp-pbar" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
                                         <div class="progress-bar bg-success" id="success-pbar" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>

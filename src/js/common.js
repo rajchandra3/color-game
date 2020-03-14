@@ -155,7 +155,7 @@ const phrases = [
      ]
 
 const generateRandomNumber = ()=>{
-    return Math.floor((Math.random()*phrases.length)+1);
+    return Math.floor((Math.random()*phrases.length));
 }
 
 const getSuperscript = (number)=>{
@@ -175,4 +175,12 @@ const getSuperscript = (number)=>{
     }
 }
 
-export {phrases,generateRandomNumber,getSuperscript}
+const rgbToHex = function (rgb) { 
+    let hex = Number(rgb).toString(16);
+    if (hex.length < 2) {
+         hex = "0" + hex;
+    }
+    return hex;
+};
+
+export {phrases,generateRandomNumber,getSuperscript,rgbToHex};

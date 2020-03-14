@@ -1,18 +1,29 @@
-import {phrases,generateRandomNumber,getSuperscript} from './common.js';
+import {phrases,generateRandomNumber,getSuperscript,rgbToHex} from './common.js';
 import StateManager from './states/state_manager.js';
 import Gameplay from './requests/components/gameplay.js';
 
 const initializeGame = ()=>{
+    let colors={
+        red:getRandomColor(),
+        green:getRandomColor(),
+        blue:getRandomColor()
+    };
     return ({
         attempts:1,
         message_displayed:false,
         correct_color:{
-            color:{
-                red:getRandomColor(),
-                green:getRandomColor(),
-                blue:getRandomColor(),
+            color:colors,
+            position:Math.floor(Math.random() * 6),
+            toHex:{
+                red:rgbToHex(colors.red),
+                green:rgbToHex(colors.green),
+                blue:rgbToHex(colors.blue)
             },
-            position:Math.floor(Math.random() * 6)
+            percentage:{
+                red:Math.round(colors.red/256*100),
+                green:Math.round(colors.green/256*100),
+                blue:Math.round(colors.blue/256*100)
+            }
         },
         hard:50,
         medium:120,
@@ -82,11 +93,10 @@ const restart_game_cta = (choice)=>{
 }
 
 const click_handler = (e,game_vars)=>{
-    // console.log(e.target.style.background,game_vars.options[game_vars.correct_color.position].style.background);
     //user won
-    if(game_vars.attempts>0 && game_vars.attempts<5 && e.target.style.background===game_vars.tiles[game_vars.correct_color.position].style.background && !game_vars.message_displayed)
+    if(game_vars.attempts>0 && game_vars.attempts<=5 && e.target.style.background===game_vars.tiles[game_vars.correct_color.position].style.background && !game_vars.message_displayed)
     {
-        game_vars.message_block.textContent=`${phrases[generateRandomNumber()]} You guessed it in ${game_vars.attempts}${getSuperscript(game_vars.attempts)} attempt.`;
+        game_vars.message_block.textContent=`${phrases[generateRandomNumber()]} It was ${game_vars.correct_color.hex_format}, you got it in ${game_vars.attempts}${getSuperscript(game_vars.attempts)} attempt.`;
         game_vars.message_displayed=true;
         paint_with_color(game_vars.tiles,game_vars.correct_color.color);
         restart_game_cta('show');
@@ -98,7 +108,6 @@ const click_handler = (e,game_vars)=>{
         game_vars.message_block.textContent="You lose, try again!";
         game_vars.message_displayed=true;
         paint_with_color(game_vars.tiles,game_vars.correct_color.color);
-        // e.target.style.background="white"; //make this tile white
         restart_game_cta('show');
         Gameplay.add(false,game_vars.attempts); //save gameplays
     }
@@ -115,7 +124,8 @@ const paint_game = (game_vars)=>{
     let blocks = game_vars.tiles;
     for(let i=0;i<6;i++) {
         if(i!==game_vars.correct_color.position){
-            game_vars.options.push(paint_tile_randomly(blocks[i],game_vars));
+            let option=paint_tile_randomly(blocks[i],game_vars);
+            option?game_vars.options.push(option):--i;
             blocks[i].addEventListener("click",(e)=>{
                 click_handler(e,game_vars);
             });
@@ -129,16 +139,40 @@ const paint_game = (game_vars)=>{
     }
 }
 
+const label_generators = (percentage)=>{
+    var activeBorders = document.querySelectorAll("#activeBorder");
+    let i=0;
+    for (let [color_name, color_value] of Object.entries(percentage)) {
+        let prec = color_value;
+        let deg = prec*3.6;
+        let active_color=`${color_name=='red'?'#ff0000':color_name=='green'?'#00ff00':'#0000ff'}`;
+        let bg_color=`${color_name=='red'?'#ff9999':color_name=='green'?'#99ff99':'#9999ff'}`;
+        activeBorders[i].style.backgroundColor=active_color;
+        if (deg <= 180){
+            activeBorders[i].style.backgroundImage=`linear-gradient(${(90+deg)}deg, transparent 50%, ${bg_color} 50%),linear-gradient(90deg, ${bg_color} 50%, transparent 50%)`;
+        }
+        else{
+            activeBorders[i].style.backgroundImage=`linear-gradient(${(deg-90)}deg, transparent 50%, ${active_color} 50%),linear-gradient(90deg, ${bg_color} 50%, transparent 50%)`;
+        }
+        document.querySelector(`.c-${color_name}`).textContent=color_value;
+        activeBorder[i].style.transform=`rotate(0deg)`;
+        document.querySelector(`#circle-${color_name}`).style.transform=`rotate(0deg)`;
+        i++;
+    }
+}
+
 const start = ()=>{
     restart_game_cta('hide');
     StateManager.handle_state_change();
     const game_vars = initializeGame();
     game_vars.message_block.textContent=`Start tapping below ...`;
-    document.getElementById("r").textContent=Math.round(game_vars.correct_color.color.red/256*100);
+    game_vars.correct_color.hex_format=`#${game_vars.correct_color.toHex.red}${game_vars.correct_color.toHex.green}${game_vars.correct_color.toHex.blue}`;
+    label_generators(game_vars.correct_color.percentage);
+    // document.getElementById("r").textContent=Math.round(game_vars.correct_color.color.red/256*100);
     // document.getElementById("red-label").style.background=`rgb(${game_vars.correct_color.color.red},255,255)`;
-    document.getElementById("g").textContent=Math.round(game_vars.correct_color.color.green/256*100);
+    // document.getElementById("g").textContent=Math.round(game_vars.correct_color.color.green/256*100);
     // document.getElementById("green-label").style.background=`rgb(255,${game_vars.correct_color.color.green},255)`;
-    document.getElementById("b").textContent=Math.round(game_vars.correct_color.color.blue/256*100);
+    // document.getElementById("b").textContent=Math.round(game_vars.correct_color.color.blue/256*100);
     // document.getElementById("blue-label").style.background=`rgb(255,255,${game_vars.correct_color.color.blue})`;
     paint_game(game_vars);
 }

@@ -5,10 +5,16 @@ a:hover{
     text-decoration: none;
     color: #444;
 }
-/* a{
-    text-decoration: none;
-    color: #444;
-} */
+.centered{
+    display: flex;
+    align-items: center;
+    justify-items: center;
+}
+.square{
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+}
 .align-center{
     text-align: center !important;
     align-items: center;
@@ -55,4 +61,60 @@ a:hover{
         margin-bottom: 4rem;
         /* border-radius: 24px !important; */
     }
+}
+
+/* css circular lebels */
+.label-container{
+    width:75px;
+    height: 75px;
+    margin: 60px auto;
+}
+.red-label{
+    background-color:#ff0000;
+}
+.green-label{
+    background-color:#00ff00;
+}
+.blue-label{
+    background-color:#0000ff;
+}
+.prec{
+    top: 15px;
+    position: relative;
+    font-size: 20px;
+}
+
+.prec:after{
+    content:'%';
+}
+
+.circle{
+    position: relative;
+    top: 5px;
+    left: 5px;
+    text-align: center;
+    width: 60px;
+    height: 60px;
+    border-radius: 100%;
+    background-color: #E6F4F7;
+
+}
+
+#c-red{
+    background-color: #ffcccc;
+}
+#c-green{
+    background-color: #ccffcc;
+}
+#c-blue{
+    background-color: #ccccff;
+}
+
+.active-border{
+    position: relative;
+    text-align: center;
+    width: 70px;
+    height: 70px;
+    border-radius: 100%;
+
 }

@@ -154,7 +154,7 @@ const label_generators = (percentage)=>{
         else{
             activeBorders[i].style.backgroundImage=`linear-gradient(${(deg-90)}deg, transparent 50%, ${active_color} 50%),linear-gradient(90deg, ${bg_color} 50%, transparent 50%)`;
         }
-        document.querySelector(`.c-${color_name}`).textContent=color_value;
+        document.querySelector(`.c-${color_name}`).textContent=`${color_value}`;
         activeBorder[i].style.transform=`rotate(0deg)`;
         document.querySelector(`#circle-${color_name}`).style.transform=`rotate(0deg)`;
         i++;

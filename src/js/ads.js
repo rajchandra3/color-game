@@ -1,5 +1,5 @@
 const h_ads=document.querySelectorAll('.horizontal-ads');
-for(ad of h_ads){
+for(let ad of h_ads){
     ad.innerHTML=`
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     <!-- color-tile-horizontal-ads -->
@@ -15,7 +15,7 @@ for(ad of h_ads){
     `
 }
 const v_ads=document.querySelectorAll('.vertical-ads');
-for(ad of v_ads){
+for(let ad of v_ads){
     ad.innerHTML=`
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     <!-- color-tile-ads -->

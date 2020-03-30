@@ -180,4 +180,4 @@ const start = ()=>{
 start();
 
 //button for start again
-document.getElementById("reset-btn").addEventListener("click",start);
+document.getElementById("reset-btn").addEventListener("click",()=>window.location.reload());

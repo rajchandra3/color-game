@@ -70,6 +70,9 @@
         <meta name="google-signin-client_id" content="843832086130-3gvh6ucajv3j0kcldpuij5oj5ttse1in.apps.googleusercontent.com">
         <script src="https://apis.google.com/js/platform.js" async defer></script>
 
+        <!-- import css files -->
+        <link rel="stylesheet" type="text/css" href="https://files.rajchandra.me/css/min/common.min.css">
+
         <!-- import js files -->
         <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
@@ -319,22 +322,7 @@
                                         </button>
                                     </div>
                                     <!-- footer -->
-                                    <div class="col-lg-12 bg-222">
-                                        <!-- footer for apps -->
-                                        <footer class="p-4 m-1 text-white text-center">
-                                            &copy; 
-                                            2017 - <span id="thisYear"></span> 
-                                            <a href="https://www.rajchandra.me" target="_blank">Raj Chandra</a>. All Rights Reserved. <br>
-                                            <a href="https://www.rajchandra.me" target="_blank"><img src="src/images/brand-icons/globe.svg" class="white-icons text-white m-2" height="25px" width="25px" aria-hidden="true" target="_blank"></a> &nbsp;
-                                            <a href="https://www.twitter.com/raj_chandra3" target="_blank"><img src="src/images/brand-icons/twitter.svg" class="white-icons text-white m-2" height="25px" width="25px" aria-hidden="true" target="_blank"></a> &nbsp;
-                                            <a href="https://www.linkedin.com/in/rajchandra3/" target="_blank"><img src="src/images/brand-icons/linkedin.svg" height="25px" width="25px" class="white-icons text-white m-2" aria-hidden="true"></a>
-                                        </footer>
-                                        <!-- script for year in footer -->
-                                        <script>
-                                            var d = new Date();
-                                            document.getElementById('thisYear').innerHTML = d.getFullYear();
-                                        </script>
-                                    </div>
+                                    <div class="col-lg-12 common-footer-container bg-dark"></div>
                                 </div>
                             </div>
                         </div>
@@ -374,6 +362,8 @@
     <script type="module" src="/src/js/index.js"></script>
     <script type="module" src="/src/js/main.js"></script>
     <script type="module" src="/src/js/requests/components/auth.js"></script>
+    <script type="module" src="https://files.rajchandra.me/js/config.js"></script>
+    <script type="text/javascript" src="https://files.rajchandra.me/js/footer.js"></script>
 
    </body>
 </html>

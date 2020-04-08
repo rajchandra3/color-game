@@ -140,7 +140,7 @@ const paint_game = (game_vars)=>{
 }
 
 const label_generators = (percentage)=>{
-    let activeBorders = document.querySelectorAll("#activeBorder");
+    let activeBorders = document.querySelectorAll(".active-border");
     let i=0;
     for (let [color_name, color_value] of Object.entries(percentage)) {
         let prec = color_value;

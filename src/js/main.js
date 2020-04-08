@@ -140,7 +140,7 @@ const paint_game = (game_vars)=>{
 }
 
 const label_generators = (percentage)=>{
-    var activeBorders = document.querySelectorAll("#activeBorder");
+    let activeBorders = document.querySelectorAll("#activeBorder");
     let i=0;
     for (let [color_name, color_value] of Object.entries(percentage)) {
         let prec = color_value;
@@ -155,7 +155,7 @@ const label_generators = (percentage)=>{
             activeBorders[i].style.backgroundImage=`linear-gradient(${(deg-90)}deg, transparent 50%, ${active_color} 50%),linear-gradient(90deg, ${bg_color} 50%, transparent 50%)`;
         }
         document.querySelector(`.c-${color_name}`).textContent=`${color_value}`;
-        activeBorder[i].style.transform=`rotate(0deg)`;
+        activeBorders[i].style.transform=`rotate(0deg)`;
         document.querySelector(`#circle-${color_name}`).style.transform=`rotate(0deg)`;
         i++;
     }

@@ -1,5 +1,5 @@
 import Store from '../requests/localstorage.js';
-import Stats from '../requests/components/user_stats.js';
+import Setting from '../components/setting.js';
 
 const add_user_image = (user_images)=>{
     for(let user_image of user_images){
@@ -61,6 +61,7 @@ const exec = ()=>{
         <h3 class='p-4 text-monospace'>Your Gameplays</h3>
         <div class='p-3 text-monospace'>You must signin to unlock your gameplays</div>
     `;
+    Setting.show();
 }
 
 export default {exec, populateLeaderboard};

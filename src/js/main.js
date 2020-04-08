@@ -1,6 +1,8 @@
 import {phrases,generateRandomNumber,getSuperscript,rgbToHex} from './common.js';
 import StateManager from './states/state_manager.js';
 import Gameplay from './requests/components/gameplay.js';
+import Store from './requests/localstorage.js';
+import Difficulty from './components/difficulty.js'
 
 const initializeGame = ()=>{
     let colors={
@@ -35,7 +37,7 @@ const initializeGame = ()=>{
 }
 
 const getRandomColor = ()=>{
-    return (Math.floor(Math.random() * 256));
+    return ((Math.floor(Math.random() * 128))*2);
     // switch(level){
     //     case 'easy':
     //         return (Math.floor(Math.random() * 256));
@@ -96,7 +98,7 @@ const click_handler = (e,game_vars)=>{
     //user won
     if(game_vars.attempts>0 && game_vars.attempts<=5 && e.target.style.background===game_vars.tiles[game_vars.correct_color.position].style.background && !game_vars.message_displayed)
     {
-        game_vars.message_block.textContent=`${phrases[generateRandomNumber()]} It was ${game_vars.correct_color.hex_format}, you got it in ${game_vars.attempts}${getSuperscript(game_vars.attempts)} attempt.`;
+        game_vars.message_block.textContent=`${phrases[generateRandomNumber(phrases.length)]} It was ${game_vars.correct_color.hex_format}, you got it in ${game_vars.attempts}${getSuperscript(game_vars.attempts)} attempt.`;
         game_vars.message_displayed=true;
         paint_with_color(game_vars.tiles,game_vars.correct_color.color);
         restart_game_cta('show');
@@ -140,13 +142,11 @@ const paint_game = (game_vars)=>{
 }
 
 const label_generators = (percentage)=>{
-    let activeBorders = document.querySelectorAll(".active-border");
-    let i=0;
-    for (let [color_name, color_value] of Object.entries(percentage)) {
+    let paint_borders= (color_name, color_value)=>{
         let prec = color_value;
         let deg = prec*3.6;
         let active_color=`${color_name=='red'?'#ff0000':color_name=='green'?'#00ff00':'#0000ff'}`;
-        let bg_color=`${color_name=='red'?'#ff9999':color_name=='green'?'#99ff99':'#9999ff'}`;
+        let bg_color=`${color_name=='red'?'#ff0000':color_name=='green'?'#00ff00':'#0000ff'}`;
         activeBorders[i].style.backgroundColor=active_color;
         if (deg <= 180){
             activeBorders[i].style.backgroundImage=`linear-gradient(${(90+deg)}deg, transparent 50%, ${bg_color} 50%),linear-gradient(90deg, ${bg_color} 50%, transparent 50%)`;
@@ -157,6 +157,26 @@ const label_generators = (percentage)=>{
         document.querySelector(`.c-${color_name}`).textContent=`${color_value}`;
         activeBorders[i].style.transform=`rotate(0deg)`;
         document.querySelector(`#circle-${color_name}`).style.transform=`rotate(0deg)`;
+    }
+
+    let paint_box_completely= (color_name, color_value)=>{
+        let active_color=`${color_name=='red'?'rgb('+percentage.red+',0,0)':color_name=='green'?'rgb(0,'+percentage.green+',0)':'rgb(0,0,'+percentage.blue+')'}`;
+        activeBorders[i].style.backgroundColor=active_color;
+        document.querySelector(`#circle-${color_name}`).innerHTML='';
+        document.querySelector(`#circle-${color_name}`).style.backgroundColor=active_color;
+    }
+    let difficulty=Store.getItem('settings').Difficulty;
+    let activeBorders = document.querySelectorAll(".active-border");
+    let i=0;
+    let tile_number=generateRandomNumber(3);
+    for (let [color_name, color_value] of Object.entries(percentage)) {
+        if(difficulty=='easy'){
+            paint_borders(color_name, color_value);
+        }else if(difficulty=='medium'){
+            i==tile_number?paint_borders(color_name, color_value):paint_box_completely(color_name, color_value);
+        }else if(difficulty=='hard'){
+            paint_box_completely(color_name, color_value);
+        }
         i++;
     }
 }
@@ -175,6 +195,7 @@ const start = ()=>{
     // document.getElementById("b").textContent=Math.round(game_vars.correct_color.color.blue/256*100);
     // document.getElementById("blue-label").style.background=`rgb(255,255,${game_vars.correct_color.color.blue})`;
     paint_game(game_vars);
+    Difficulty.ui();
 }
 
 start();

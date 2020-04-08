@@ -1,6 +1,7 @@
 import Store from './../requests/localstorage.js';
 import Gameplay from '../requests/components/gameplay.js';
 import Stats from '../requests/components/user_stats.js';
+import Setting from '../components/setting.js';
 
 //get user data
 const userData=Store.getItem('userData');
@@ -74,6 +75,7 @@ const populateLeaderboard = (users)=>{
         `);
     }
 }
+
 const exec = ()=>{
     console.log(`Setting logged in user's attributes...`);
     document.getElementById('g-signin-btn').style.display='none';
@@ -87,6 +89,7 @@ const exec = ()=>{
 
     Stats.currentUserStats(); //get new stats
     Gameplay.getUserGameplays(); //get new gameplays
+    Setting.show(); //show settings
 }
 
 export default {exec, populateStats, populateGameplays, update_progress_bar, populateLeaderboard};

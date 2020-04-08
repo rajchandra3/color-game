@@ -154,8 +154,8 @@ const phrases = [
         "It's A Masterpiece!"
      ]
 
-const generateRandomNumber = ()=>{
-    return Math.floor((Math.random()*phrases.length));
+const generateRandomNumber = (max)=>{
+    return Math.floor((Math.random()*max));
 }
 
 const getSuperscript = (number)=>{

@@ -4,10 +4,10 @@ import Store from '../localstorage.js';
 import Profile from '../../states/logged_in.js';
 import Stats from './user_stats.js';
 
-const add = (won,attempts) => {
+const add = (won,attempts,difficulty) => {
     if(Cookie.checkCookie(Cookie.cookieName)){
         axios.post(`${Config.urls.app}/gameplay/g/add`,{
-            won,attempts
+            won,attempts,difficulty
         },{headers: Config.getAuthConfig()})
         .then(response => {
             const data = response.data;

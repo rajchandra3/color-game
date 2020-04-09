@@ -2,7 +2,10 @@ import {phrases,generateRandomNumber,getSuperscript,rgbToHex} from './common.js'
 import StateManager from './states/state_manager.js';
 import Gameplay from './requests/components/gameplay.js';
 import Store from './requests/localstorage.js';
-import Difficulty from './components/difficulty.js'
+import Difficulty from './components/difficulty.js';
+import TwitterFavAnimation from './components/animations/twitter_fav.js';
+import RippleAnimation from './components/animations/simple_ripple.js';
+import TwitterStarAnimation from './components/animations/twitter_star.js';
 
 const initializeGame = ()=>{
     let colors={
@@ -98,11 +101,12 @@ const click_handler = (e,game_vars)=>{
     //user won
     if(game_vars.attempts>0 && game_vars.attempts<=5 && e.target.style.background===game_vars.tiles[game_vars.correct_color.position].style.background && !game_vars.message_displayed)
     {
+        let difficulty=Difficulty.get();
         game_vars.message_block.textContent=`${phrases[generateRandomNumber(phrases.length)]} It was ${game_vars.correct_color.hex_format}, you got it in ${game_vars.attempts}${getSuperscript(game_vars.attempts)} attempt.`;
         game_vars.message_displayed=true;
         paint_with_color(game_vars.tiles,game_vars.correct_color.color);
         restart_game_cta('show');
-        Gameplay.add(true,game_vars.attempts); //save gameplays
+        Gameplay.add(true,game_vars.attempts,difficulty); //save gameplays
     }
     //user lost
     else if(game_vars.attempts==5 && !game_vars.message_displayed)
@@ -111,7 +115,7 @@ const click_handler = (e,game_vars)=>{
         game_vars.message_displayed=true;
         paint_with_color(game_vars.tiles,game_vars.correct_color.color);
         restart_game_cta('show');
-        Gameplay.add(false,game_vars.attempts); //save gameplays
+        Gameplay.add(false,game_vars.attempts,difficulty); //save gameplays
     }
     //user still has more attempts
     else if(!game_vars.message_displayed)
@@ -131,11 +135,28 @@ const paint_game = (game_vars)=>{
             blocks[i].addEventListener("click",(e)=>{
                 click_handler(e,game_vars);
             });
+            blocks[i].addEventListener( 'click', function (e) {
+                RippleAnimation.circle1
+                    .tune({ x: e.pageX, y: e.pageY  })
+                    .replay();
+               
+                RippleAnimation.circle2
+                    .tune({ x: e.pageX, y: e.pageY  })
+                    .replay();
+               
+            });
         }else{
             game_vars.options.push(game_vars.correct_color.color);
             blocks[i].style.background = `rgb(${game_vars.correct_color.color.red},${game_vars.correct_color.color.green},${game_vars.correct_color.color.blue})`;;
             blocks[i].addEventListener("click",(e)=>{
                 click_handler(e,game_vars);
+            });
+            blocks[i].addEventListener( 'click', function (e) {
+                const coords = { x: e.pageX, y: e.pageY };
+                TwitterStarAnimation.burst.tune(coords);
+                TwitterStarAnimation.circle.tune(coords);
+                TwitterStarAnimation.star.tune(coords);
+                TwitterStarAnimation.timeline.replay();
             });
         }
     }

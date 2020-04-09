@@ -36,7 +36,7 @@ const populateGameplays = (gameplays)=>{
         $('table').find('.tbody-gp').append(`
             <tr>
                 <td>${moment(new Date(gameplay.createdAt), "YYYYMMDD").fromNow()}</td>
-                <td>${gameplay.won?'success':'failure'}</td>
+                <td>${gameplay.won?'success':'failure'}</br><small>(${gameplay.difficulty})</small></td>
                 <td>${gameplay.attempts}</td>
             </tr>`);
     }

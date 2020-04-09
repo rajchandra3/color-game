@@ -21,4 +21,7 @@ const ui = ()=>{
     }
 }
 
-export default {ui};
+const get = ()=>{
+    return Setting.fetch().Difficulty;
+}
+export default {get, ui};

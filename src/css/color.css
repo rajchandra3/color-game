@@ -84,10 +84,6 @@ a:hover{
     font-size: 20px;
 }
 
-.prec:after{
-    content:'%';
-}
-
 .circle{
     position: relative;
     top: 5px;

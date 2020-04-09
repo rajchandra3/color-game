@@ -176,7 +176,7 @@ const label_generators = (game_vars)=>{
         else{
             activeBorders[i].style.backgroundImage=`linear-gradient(${(deg-90)}deg, transparent 50%, ${active_color} 50%),linear-gradient(90deg, ${bg_color} 50%, transparent 50%)`;
         }
-        document.querySelector(`.c-${color_name}`).textContent=`${percentage}`;
+        document.querySelector(`.c-${color_name}`).textContent=`${percentage}%`;
         activeBorders[i].style.transform=`rotate(0deg)`;
         document.querySelector(`#circle-${color_name}`).style.transform=`rotate(0deg)`;
     }

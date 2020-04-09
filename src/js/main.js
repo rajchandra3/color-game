@@ -37,7 +37,7 @@ const initializeGame = ()=>{
 }
 
 const getRandomColor = ()=>{
-    return ((Math.floor(Math.random() * 128))*2);
+    return (Math.floor(Math.random() * 180)+51);
     // switch(level){
     //     case 'easy':
     //         return (Math.floor(Math.random() * 256));
@@ -141,12 +141,13 @@ const paint_game = (game_vars)=>{
     }
 }
 
-const label_generators = (percentage)=>{
+const label_generators = (game_vars)=>{
+    //show percentage and color the border
     let paint_borders= (color_name, color_value)=>{
-        let prec = color_value;
-        let deg = prec*3.6;
+        let percentage = game_vars.correct_color.percentage[color_name];
+        let deg = percentage*3.6;
         let active_color=`${color_name=='red'?'#ff0000':color_name=='green'?'#00ff00':'#0000ff'}`;
-        let bg_color=`${color_name=='red'?'#ff0000':color_name=='green'?'#00ff00':'#0000ff'}`;
+        let bg_color=`${color_name=='red'?'#ff9999':color_name=='green'?'#99ff99':'#9999ff'}`;
         activeBorders[i].style.backgroundColor=active_color;
         if (deg <= 180){
             activeBorders[i].style.backgroundImage=`linear-gradient(${(90+deg)}deg, transparent 50%, ${bg_color} 50%),linear-gradient(90deg, ${bg_color} 50%, transparent 50%)`;
@@ -154,13 +155,14 @@ const label_generators = (percentage)=>{
         else{
             activeBorders[i].style.backgroundImage=`linear-gradient(${(deg-90)}deg, transparent 50%, ${active_color} 50%),linear-gradient(90deg, ${bg_color} 50%, transparent 50%)`;
         }
-        document.querySelector(`.c-${color_name}`).textContent=`${color_value}`;
+        document.querySelector(`.c-${color_name}`).textContent=`${percentage}`;
         activeBorders[i].style.transform=`rotate(0deg)`;
         document.querySelector(`#circle-${color_name}`).style.transform=`rotate(0deg)`;
     }
 
-    let paint_box_completely= (color_name, color_value)=>{
-        let active_color=`${color_name=='red'?'rgb('+percentage.red+',0,0)':color_name=='green'?'rgb(0,'+percentage.green+',0)':'rgb(0,0,'+percentage.blue+')'}`;
+    //paint the label completely
+    let paint_box_completely= (color_name,color_value)=>{
+        let active_color=`${color_name=='red'?'rgb('+color_value+',0,0)':color_name=='green'?'rgb(0,'+color_value+',0)':'rgb(0,0,'+color_value+')'}`;
         activeBorders[i].style.backgroundColor=active_color;
         document.querySelector(`#circle-${color_name}`).innerHTML='';
         document.querySelector(`#circle-${color_name}`).style.backgroundColor=active_color;
@@ -169,7 +171,7 @@ const label_generators = (percentage)=>{
     let activeBorders = document.querySelectorAll(".active-border");
     let i=0;
     let tile_number=generateRandomNumber(3);
-    for (let [color_name, color_value] of Object.entries(percentage)) {
+    for (let [color_name, color_value] of Object.entries(game_vars.correct_color.color)) {
         if(difficulty=='easy'){
             paint_borders(color_name, color_value);
         }else if(difficulty=='medium'){
@@ -187,7 +189,7 @@ const start = ()=>{
     const game_vars = initializeGame();
     game_vars.message_block.textContent=`Start tapping below ...`;
     game_vars.correct_color.hex_format=`#${game_vars.correct_color.toHex.red}${game_vars.correct_color.toHex.green}${game_vars.correct_color.toHex.blue}`;
-    label_generators(game_vars.correct_color.percentage);
+    label_generators(game_vars);
     // document.getElementById("r").textContent=Math.round(game_vars.correct_color.color.red/256*100);
     // document.getElementById("red-label").style.background=`rgb(${game_vars.correct_color.color.red},255,255)`;
     // document.getElementById("g").textContent=Math.round(game_vars.correct_color.color.green/256*100);

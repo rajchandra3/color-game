@@ -2,20 +2,20 @@ const CACHE_NAME = "color-tile-rajchandra-me";
 
 const urlsToCache = [
   "/index.html",
-  "/css/min/color.min.css",
+  "/src/css/min/color.min.css",
 //   "/css/min/animate.min.css",
-  "/css/min/profile.min.css",
-  "/js/requests/components/auth.js",
-  "/js/requests/components/gameplays.js",
-  "/js/requests/components/user_stats.js",
-  "/js/requests/config.js",
-  "/js/requests/cookie.js",
-  "/js/requests/localstorage.js",
-  "/js/states/anonymous.js",
-  "/js/states/logged_in.js",
-  "/js/states/state_manager.js",
-  "/js/main.js",
-  "/js/common.js"
+  "/src/css/min/profile.min.css",
+  "/src/js/requests/components/auth.js",
+  "/src/js/requests/components/gameplays.js",
+  "/src/js/requests/components/user_stats.js",
+  "/src/js/requests/config.js",
+  "/src/js/requests/cookie.js",
+  "/src/js/requests/localstorage.js",
+  "/src/js/states/anonymous.js",
+  "/src/js/states/logged_in.js",
+  "/src/js/states/state_manager.js",
+  "/src/js/main.js",
+  "/src/js/common.js"
 ]
 
 self.addEventListener('install', function(event) {

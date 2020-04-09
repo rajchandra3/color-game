@@ -1,5 +1,6 @@
 import Store from '../requests/localstorage.js';
 import Setting from '../components/setting.js';
+import Profile from '../requests/components/user_stats.js';
 
 const add_user_image = (user_images)=>{
     for(let user_image of user_images){
@@ -28,6 +29,24 @@ const set_metadata = ()=>{
     })
 }
 
+const set_userdata = ()=>{
+    if(Store.getItem('user')){
+        console.log('userdata is already available...');
+    }else{
+        console.log(`setting userdata...`);
+        Store.setItem('user',{
+            gameplays:[],
+            profile:{
+                total_success: 0,
+                total_failure: 0,
+                total_game_play: 0,
+                score: 0,
+                user: 'Anonymous'
+            }
+        })
+    }
+}
+
 const populateLeaderboard = (users)=>{
     $(".tbody-leaderboard tr").remove(); 
     let i = 0;
@@ -45,6 +64,7 @@ const populateLeaderboard = (users)=>{
 
 const exec = ()=>{
     set_metadata();
+    set_userdata();
     console.log(`Setting anonymous attributes...`);
     document.getElementById('g-signin-btn').style.display='block';
     document.getElementById('g-signout-btn').style.display='none';
@@ -54,14 +74,16 @@ const exec = ()=>{
     add_usernames(usernames);
     const join_dates=document.querySelectorAll('.join-date');
     add_join_dates(join_dates);
-    document.querySelector('.progress-container').style.display='none';
-    document.querySelector('.stats-wrapper').innerHTML=`<div class='p-3'>You must signin to unlock your stats</div>`;
-    document.querySelector('.gameplays-container').style.textAlign='left';
-    document.querySelector('#nav-gameplays').innerHTML=`
-        <h3 class='p-4 text-monospace'>Your Gameplays</h3>
-        <div class='p-3 text-monospace'>You must signin to unlock your gameplays</div>
-    `;
+    // document.querySelector('.progress-container').style.display='none';
+    // document.querySelector('.stats-wrapper').innerHTML=`<div class='p-3'>You must signin to unlock your stats</div>`;
+    // document.querySelector('.gameplays-container').style.textAlign='left';
+    // document.querySelector('#nav-gameplays').innerHTML=`
+    //     <h3 class='p-4 text-monospace'>Your Gameplays</h3>
+    //     <div class='p-3 text-monospace'>You must signin to unlock your gameplays</div>
+    // `;
     Setting.show();
+
+    Profile.currentUserStats();
 }
 
 export default {exec, populateLeaderboard};

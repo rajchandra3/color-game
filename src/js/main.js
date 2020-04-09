@@ -111,6 +111,7 @@ const click_handler = (e,game_vars)=>{
     //user lost
     else if(game_vars.attempts==5 && !game_vars.message_displayed)
     {
+        let difficulty=Difficulty.get();
         game_vars.message_block.textContent="You lose, try again!";
         game_vars.message_displayed=true;
         paint_with_color(game_vars.tiles,game_vars.correct_color.color);

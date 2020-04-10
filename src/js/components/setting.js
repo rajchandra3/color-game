@@ -1,4 +1,5 @@
 import Store from '../requests/localstorage.js';
+import Mixpanel from './analytics/mixpanel.js';
 
 const fetch = ()=>{
     let settings=Store.getItem('settings');
@@ -32,9 +33,13 @@ const show = ()=>{
 
 const update = {
     difficulty: ()=>{
-        console.log('updating difficulty..')
+        console.log('updating difficulty..');
         let difficulty = document.querySelector('input[name="difficulty-options"]:checked').getAttribute('id');
         let settings = fetch();
+        Mixpanel.track_difficulty_changes({
+            old:settings.Difficulty,
+            new:difficulty
+        })
         settings.Difficulty=difficulty;
         set(settings);
         show();

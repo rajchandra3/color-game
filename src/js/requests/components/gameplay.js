@@ -3,8 +3,10 @@ import Config from '../config.js';
 import Store from '../localstorage.js';
 import Profile from '../../states/logged_in.js';
 import Stats from './user_stats.js';
+import Mixpanel from '../../components/analytics/mixpanel.js';
 
 const add = (won,attempts,difficulty) => {
+    Mixpanel.track_gameplay({won,attempts,difficulty});
     if(Cookie.checkCookie(Cookie.cookieName)){
         axios.post(`${Config.urls.app}/gameplay/g/add`,{
             won,attempts,difficulty
@@ -21,7 +23,6 @@ const add = (won,attempts,difficulty) => {
                 Stats.currentUserStats();
                 getUserGameplays();
                 console.log('Saved Gameplay and updated metadata');
-                
             }else{
                 console.log(`Error! couldn't save your gameplay`);
             }

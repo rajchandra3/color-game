@@ -1,6 +1,7 @@
 import Config from './requests/config.js';
 import Stats from './requests/components/user_stats.js';
 import Store from './requests/localstorage.js';
+import Mixpanel from './components/analytics/mixpanel.js';
 
 //put css in html
 if(Config.env==='production'){
@@ -19,32 +20,41 @@ if(Config.env==='production'){
 document.getElementById('nav-leaderboard-tab').addEventListener('click',Stats.leaderboard);
 
 //share button event listener
-const shareButton=document.querySelector('#share-button');
-const metas=document.querySelectorAll('meta');
-let description_text="";
-for(let meta of metas){
-    if(meta.getAttribute('name')=='description')
-        description_text=meta.getAttribute('content');
-}
-const share_data={
-    title: document.title,
-    text: description_text,
-    url: document.URL
-};
-let user = Store.getItem('user');
-share_data.text=`Hey I scored ${user.profile.score} points in color tile game, it's super easy and fun to play. Can you beat my score?`;
+let shareButton=document.querySelector('#share-button');
 if (navigator.share) {
+    console.log('was here');
+    const metas=document.querySelectorAll('meta');
+    let description_text="";
+    for(let meta of metas){
+        if(meta.getAttribute('name')=='description')
+            description_text=meta.getAttribute('content');
+    }
+    const share_data={
+        title: document.title,
+        text: description_text,
+        url: document.URL
+    };
+    let user = Store.getItem('user');
+    share_data.text=`Hey I scored ${user.profile.score} points in color tile game, it's super easy and fun to play. Can you beat my score?`;
     shareButton.addEventListener('click', event => {
+        Mixpanel.track('SHARE_BUTTON_CLICKED');
         navigator.share(share_data)
         .then(() => {
+            Mixpanel.track('SHARE_SUCCESSFUL',share_data);
             console.log('Thanks for sharing!');
         })
-        .catch(console.error);
+        .catch((e)=>{
+            console.log(e);
+            Mixpanel.track('SHARE_UNSUCCESSFUL',share_data);
+        });
     });
 } else {
     shareButton.style.display='none';
 }
 
+document.querySelector('#nav-profile').addEventListener('click',Mixpanel.track('PROFILE_SECTION_VIEWED'));
+
+// register service worker
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', ()=> {
         navigator.serviceWorker.register('/service_worker.js').then((registration)=> {

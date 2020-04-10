@@ -1,8 +1,15 @@
 import Cookie from '../cookie.js';
 import Config from '../config.js';
 import Store from '../localstorage.js';
+import Mixpanel from '../../components/analytics/mixpanel.js';
 
 const signOut = () => {
+    let user = Store.getItem('userData');
+    Mixpanel.track('USER_LOGOUT',{
+        name:user.name.fullName,
+        picture:user.picture,
+        uid:user.uid
+    });
     var googleAuth = gapi.auth2.getAuthInstance();
     googleAuth.signOut().then(function () {
         Store.empty();
@@ -23,6 +30,7 @@ const loginUsingGoogle = (raw)=>{
         if(data.code===0){
             Cookie.setCookie(Cookie.cookieName,data.cookies.access_token,999);
             Store.setItem('userData',data.userData);
+            Mixpanel.track_user(data.userData);
             location.reload();
         }else{
             //error
@@ -43,6 +51,7 @@ const onSuccess = (googleUser)=> {
         }
         loginUsingGoogle(data);
     }else{
+        Mixpanel.track('GOOGLE_LOGIN_FAILURE');
         console.log('userdata is available!')
     }
 }

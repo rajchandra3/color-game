@@ -32,7 +32,7 @@ const share_data={
     url: document.URL
 };
 let user = Store.getItem('user');
-share_data.text=`Hey I scored ${user.profile.score} in color tile game, it's super easy and fun to play. Can you beat my score?`
+share_data.text=`Hey I scored ${user.profile.score} points in color tile game, it's super easy and fun to play. Can you beat my score?`;
 if (navigator.share) {
     shareButton.addEventListener('click', event => {
         navigator.share(share_data)

@@ -1,6 +1,7 @@
 import Store from '../requests/localstorage.js';
 import Setting from '../components/setting.js';
 import Profile from '../requests/components/user_stats.js';
+import Config from "../requests/config.js";
 
 const add_user_image = (user_images)=>{
     for(let user_image of user_images){
@@ -66,7 +67,8 @@ const exec = ()=>{
     set_metadata();
     set_userdata();
     console.log(`Setting anonymous attributes...`);
-    document.getElementById('g-signin-btn').style.display='block';
+    document.getElementById('login-btn').style.display='block';
+    document.getElementById('login-btn').innerHTML=`<a href="${Config.urls.auth}?redirect_url=${location.href}" class="btn btn-primary">Click to login</a>`
     document.getElementById('g-signout-btn').style.display='none';
     const user_images=document.querySelectorAll('.user-image');
     add_user_image(user_images);

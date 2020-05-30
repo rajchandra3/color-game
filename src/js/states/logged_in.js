@@ -78,7 +78,7 @@ const populateLeaderboard = (users)=>{
 
 const exec = ()=>{
     console.log(`Setting logged in user's attributes...`);
-    document.getElementById('g-signin-btn').style.display='none';
+    document.getElementById('login-btn').style.display='none';
     document.getElementById('g-signout-btn').style.display='block';
     const user_images=document.querySelectorAll('.user-image');
     add_user_image(user_images);

@@ -57,7 +57,7 @@ document.querySelector('#nav-profile').addEventListener('click',Mixpanel.track('
 // register service worker
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', ()=> {
-        navigator.serviceWorker.register('/service_worker.js').then((registration)=> {
+        navigator.serviceWorker.register('/serviceWorker.js').then((registration)=> {
             // Registration was successful
             console.log('ServiceWorker registration successful with scope: ', registration.scope);
         }, (err)=> {

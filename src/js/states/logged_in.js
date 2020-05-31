@@ -3,22 +3,19 @@ import Gameplay from '../requests/components/gameplay.js';
 import Stats from '../requests/components/user_stats.js';
 import Setting from '../components/setting.js';
 
-//get user data
-const userData=Store.getItem('userData');
-
-const add_user_image = (user_images)=>{
+const add_user_image = (userData,user_images)=>{
     for(let user_image of user_images){
         user_image.setAttribute('src',userData.picture);
     }
 }
 
-const add_usernames = (usernames)=>{
+const add_usernames = (userData,usernames)=>{
     for(let username of usernames){
         username.innerHTML=userData.name.fullName;
     }
 }
 
-const add_join_dates = (dates)=>{
+const add_join_dates = (userData,dates)=>{
     for(let date of dates){
         date.innerHTML=`Joined ${moment(new Date(userData.createdAt), "YYYYMMDD").fromNow()}`;
     }
@@ -76,16 +73,16 @@ const populateLeaderboard = (users)=>{
     }
 }
 
-const exec = ()=>{
+const exec = (userData)=>{
     console.log(`Setting logged in user's attributes...`);
     document.getElementById('login-btn').style.display='none';
     document.getElementById('g-signout-btn').style.display='block';
     const user_images=document.querySelectorAll('.user-image');
-    add_user_image(user_images);
+    add_user_image(userData,user_images);
     const usernames=document.querySelectorAll('.username');
-    add_usernames(usernames);
+    add_usernames(userData,usernames);
     const join_dates=document.querySelectorAll('.join-date');
-    add_join_dates(join_dates);
+    add_join_dates(userData,join_dates);
 
     Stats.currentUserStats(); //get new stats
     Gameplay.getUserGameplays(); //get new gameplays

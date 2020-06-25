@@ -5,6 +5,9 @@ a:hover{
     text-decoration: none;
     color: #444;
 }
+.hidden{
+    display: none !important;
+}
 .centered{
     display: flex;
     align-items: center;
@@ -113,4 +116,26 @@ a:hover{
     height: 70px;
     border-radius: 100%;
 
+}
+
+.float-container{
+    position:fixed;
+    /* width:200px; */
+    /* height:40px; */
+    bottom:20px;
+    right:20px;
+    /* background-color:#0C9; */
+    color:#FFF;
+    /* border-radius:50px; */
+    text-align:center;
+    /* box-shadow: 2px 2px 3px #999; */
+    z-index: 1000;
+}
+
+.my-float{
+    margin-top: 30px;
+}
+
+.pointer{
+  cursor: pointer;
 }

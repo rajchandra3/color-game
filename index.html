@@ -86,6 +86,7 @@
         <!-- import js files -->
         <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+        <script src="./serviceWorker.js"></script>
 
         <title>Play Color Tile - It's 100% free!!</title>
         <link rel="icon" href="src/images/favicon.png" type="image/png" sizes="16x16">
@@ -371,6 +372,10 @@
                             </div>
                         </div>
                     </div>
+                    <!-- install app -->
+                    <div title="Install App" class="install-app-container float-container pointer hidden">
+                        <button class="btn btn-primary my-float install-app-button">Install App</button>
+                    </div>
                 </div>
                 <!-- ads for large screens -->
                 <div class="horizontal-ads d-none col-md-2 d-md-block d-lg-block d-xl-block">
@@ -406,6 +411,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@mojs/core"></script>
     <script type="module" src="/src/js/index.js"></script>
     <script type="module" src="/src/js/main.js"></script>
+    <script src="/src/js/installPWA.js"></script>
     <script type="module" src="/src/js/requests/components/auth.js"></script>
     <script type="module" src="https://files.rajchandra.me/js/config.js"></script>
     <script type="text/javascript" src="https://files.rajchandra.me/js/footer.js"></script>

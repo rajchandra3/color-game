@@ -1,7 +1,7 @@
 import Config from './requests/config.js';
 import Stats from './requests/components/user_stats.js';
 import Store from './requests/localstorage.js';
-import Mixpanel from './components/analytics/mixpanel.js';
+import Mixpanel from './components/analytics/mix.js';
 
 //put css in html
 if(Config.env==='production'){

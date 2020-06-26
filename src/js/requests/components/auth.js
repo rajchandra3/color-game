@@ -1,7 +1,7 @@
 import Cookie from '../cookie.js';
 import Config from '../config.js';
 import Store from '../localstorage.js';
-import Mixpanel from '../../components/analytics/mixpanel.js';
+import Mixpanel from '../../components/analytics/mix.js';
 
 const signOut = () => {
     let user = Store.getItem('userData');

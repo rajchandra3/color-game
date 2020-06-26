@@ -3,7 +3,7 @@ import Config from '../config.js';
 import Store from '../localstorage.js';
 import Profile from '../../states/logged_in.js';
 import Stats from './user_stats.js';
-import Mixpanel from '../../components/analytics/mixpanel.js';
+import Mixpanel from '../../components/analytics/mix.js';
 
 const add = (won,attempts,difficulty) => {
     Mixpanel.track_gameplay({won,attempts,difficulty});

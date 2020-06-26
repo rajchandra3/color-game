@@ -1,5 +1,5 @@
 import Store from '../requests/localstorage.js';
-import Mixpanel from './analytics/mixpanel.js';
+import Mixpanel from './analytics/mix.js';
 
 const fetch = ()=>{
     let settings=Store.getItem('settings');

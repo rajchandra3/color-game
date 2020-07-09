@@ -6,6 +6,7 @@ import Difficulty from './components/difficulty.js';
 import TwitterFavAnimation from './components/animations/twitter_fav.js';
 import RippleAnimation from './components/animations/simple_ripple.js';
 import TwitterStarAnimation from './components/animations/twitter_star.js';
+import CongratsAnimation from './components/animations/congrats_burst.js';
 
 const initializeGame = ()=>{
     let colors={
@@ -136,6 +137,7 @@ const click_handler = (e,game_vars)=>{
         paint_with_color(game_vars.tiles,game_vars.correct_color.color);
         restart_game_cta('show');
         Gameplay.add(true,game_vars.attempts,difficulty); //save gameplays
+        CongratsAnimation.execute(e);
     }
     //user lost
     // else if(game_vars.attempts === game_vars.numberOfTiles-1 && !game_vars.message_displayed)
@@ -143,7 +145,7 @@ const click_handler = (e,game_vars)=>{
     {
         if(!game_vars.message_displayed){
             let difficulty=Difficulty.get();
-            game_vars.message_block.textContent="You lose, try again!";
+            game_vars.message_block.innerHTML=`You lose!! <br>It was ${game_vars.correct_color.hex_format}, click start again button to play again`;
             game_vars.message_displayed=true;
             paint_with_color(game_vars.tiles,game_vars.correct_color.color);
             restart_game_cta('show');

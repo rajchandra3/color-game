@@ -13,12 +13,39 @@ const initializeGame = ()=>{
         green:getRandomColor(),
         blue:getRandomColor()
     };
+    let numberOfTiles = 6;
+    let difficulty = Store.getItem('settings').Difficulty;
+    switch (difficulty) {
+        case 'easy':
+            numberOfTiles=2;
+            break;
+    
+        case 'medium':
+            numberOfTiles=4;
+            break;
+    
+        case 'hard':
+            numberOfTiles=6;
+            break;
+    
+        default:
+            numberOfTiles=2;
+            break;
+    }
+    let game_div = document.querySelector('.game-frame');
+    for(let i=0;i<numberOfTiles;i++){
+        let box = document.createElement('div');
+        // console.log(typeof box )
+        box.setAttribute('class',`col-xs-${numberOfTiles===2?6:3} btn square p-4 m-2 text-white add-shadow`)
+        game_div.appendChild(box);
+    }
     return ({
         attempts:1,
         message_displayed:false,
+        numberOfTiles,
         correct_color:{
             color:colors,
-            position:Math.floor(Math.random() * 6),
+            position:Math.floor(Math.random() * numberOfTiles),
             toHex:{
                 red:rgbToHex(colors.red),
                 green:rgbToHex(colors.green),
@@ -33,6 +60,7 @@ const initializeGame = ()=>{
         hard:50,
         medium:120,
         easy:256,
+        difficulty,
         options:[],
         message_block:document.getElementById("message-id"),
         tiles:document.querySelectorAll(".square")
@@ -129,7 +157,7 @@ const click_handler = (e,game_vars)=>{
 
 const paint_game = (game_vars)=>{
     let blocks = game_vars.tiles;
-    for(let i=0;i<6;i++) {
+    for(let i=0;i<game_vars.numberOfTiles;i++) {
         if(i!==game_vars.correct_color.position){
             let option=paint_tile_randomly(blocks[i],game_vars);
             option?game_vars.options.push(option):--i;
@@ -189,7 +217,7 @@ const label_generators = (game_vars)=>{
         document.querySelector(`#circle-${color_name}`).innerHTML='';
         document.querySelector(`#circle-${color_name}`).style.backgroundColor=active_color;
     }
-    let difficulty=Store.getItem('settings').Difficulty;
+    let difficulty=game_vars.difficulty;
     let activeBorders = document.querySelectorAll(".active-border");
     let i=0;
     let tile_number=generateRandomNumber(3);

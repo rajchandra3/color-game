@@ -36,7 +36,7 @@ const initializeGame = ()=>{
     for(let i=0;i<numberOfTiles;i++){
         let box = document.createElement('div');
         // console.log(typeof box )
-        box.setAttribute('class',`col-xs-${numberOfTiles===2?6:3} btn square p-4 m-2 text-white add-shadow`)
+        box.setAttribute('class',`col-xs-3 btn square p-4 m-2 text-white add-shadow`)
         game_div.appendChild(box);
     }
     return ({
@@ -127,7 +127,8 @@ const restart_game_cta = (choice)=>{
 
 const click_handler = (e,game_vars)=>{
     //user won
-    if(game_vars.attempts>0 && game_vars.attempts<=5 && e.target.style.background===game_vars.tiles[game_vars.correct_color.position].style.background && !game_vars.message_displayed)
+    // if(game_vars.attempts>0 && game_vars.attempts<=game_vars.numberOfTiles-1 && e.target.style.background===game_vars.tiles[game_vars.correct_color.position].style.background && !game_vars.message_displayed)
+    if(e.target.style.background===game_vars.tiles[game_vars.correct_color.position].style.background && !game_vars.message_displayed)
     {
         let difficulty=Difficulty.get();
         game_vars.message_block.textContent=`${phrases[generateRandomNumber(phrases.length)]} It was ${game_vars.correct_color.hex_format}, you got it in ${game_vars.attempts}${getSuperscript(game_vars.attempts)} attempt.`;
@@ -137,22 +138,25 @@ const click_handler = (e,game_vars)=>{
         Gameplay.add(true,game_vars.attempts,difficulty); //save gameplays
     }
     //user lost
-    else if(game_vars.attempts==5 && !game_vars.message_displayed)
+    // else if(game_vars.attempts === game_vars.numberOfTiles-1 && !game_vars.message_displayed)
+    else
     {
-        let difficulty=Difficulty.get();
-        game_vars.message_block.textContent="You lose, try again!";
-        game_vars.message_displayed=true;
-        paint_with_color(game_vars.tiles,game_vars.correct_color.color);
-        restart_game_cta('show');
-        Gameplay.add(false,game_vars.attempts,difficulty); //save gameplays
+        if(!game_vars.message_displayed){
+            let difficulty=Difficulty.get();
+            game_vars.message_block.textContent="You lose, try again!";
+            game_vars.message_displayed=true;
+            paint_with_color(game_vars.tiles,game_vars.correct_color.color);
+            restart_game_cta('show');
+            Gameplay.add(false,game_vars.attempts,difficulty); //save gameplays
+        }
     }
     //user still has more attempts
-    else if(!game_vars.message_displayed)
-    {
-        game_vars.message_block.textContent="Oops! That is wrong...";
-        e.target.style.background="white";
-        game_vars.attempts++;
-    }
+    // else if(!game_vars.message_displayed)
+    // {
+    //     game_vars.message_block.textContent="Oops! That is wrong...";
+    //     e.target.style.background="white";
+    //     game_vars.attempts++;
+    // }
 }
 
 const paint_game = (game_vars)=>{

@@ -30,11 +30,22 @@ self.addEventListener('install', e => {
 // and check if we have cached the file
 // if so it will serve the cached file
 self.addEventListener('fetch', event => {
+  // event.respondWith(
+  //   caches.open(cacheName)
+  //     .then(cache => cache.match(event.request, { ignoreSearch: true }))
+  //     .then(response => {
+  //       return response || fetch(event.request);
+  //     })
+  // );
   event.respondWith(
-    caches.open(cacheName)
-      .then(cache => cache.match(event.request, { ignoreSearch: true }))
-      .then(response => {
-        return response || fetch(event.request);
-      })
+    caches.match(event.request)
+      .then(function(response) {
+        // Cache hit - return response
+        // if (response) {
+        //   return response;
+        // }
+        return fetch(event.request);
+      }
+    )
   );
 });

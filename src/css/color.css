@@ -13,6 +13,9 @@ a:hover{
     align-items: center;
     justify-items: center;
 }
+.margin-auto{
+    margin: auto;
+}
 .square{
     width: 80px;
     height: 80px;

@@ -142,3 +142,7 @@ a:hover{
 .pointer{
   cursor: pointer;
 }
+
+*{
+    outline: 1px red solid;
+}

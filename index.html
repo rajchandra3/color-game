@@ -65,6 +65,11 @@
         <link rel="apple-touch-icon" href="src/images/icons/icon-384x384.png" />
         <link rel="apple-touch-icon" href="src/images/icons/icon-512x512.png" />
         <meta name="apple-mobile-web-app-status-bar" content="#302b63" />
+
+        <!-- GPT -->
+        <link rel="preload" href="https://securepubads.g.doubleclick.net/tag/js/gpt.js" as="script">
+        <script src="/src/js/gpt.js"></script>
+
         <!-- import fonts -->
         <link href="https://fonts.googleapis.com/css?family=Ubuntu&display=swap" rel="stylesheet">
 
@@ -123,6 +128,14 @@
         </script>
     </head>
     <body>
+
+    <div id="banner-ad" style="width: 300px; height: 250px;">
+        <script>
+          googletag.cmd.push(function() {
+            googletag.display('banner-ad');
+          });
+        </script>
+      </div>
         <div class="container-fluid text-center">
             <div class="row add-shadow">
                 <!-- header -->
@@ -131,7 +144,7 @@
                 </div>
                  <!-- game components -->
                 <!-- ads for large screens -->
-                <div class="vertical-ads d-none col-md-2 d-md-block d-lg-block d-xl-block">
+                <div id="gpt-ad-large" class="vertical-ads d-none col-md-2 d-md-block d-lg-block d-xl-block">
                     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
                     <!-- color-tile-ads -->
                     <ins class="adsbygoogle"
@@ -139,20 +152,20 @@
                         data-ad-client="ca-pub-8598751574376549"
                         data-ad-slot="6993669367"
                         data-ad-format="auto"
+                        data-adtest="on"
                         data-full-width-responsive="true"></ins>
                     <script>
                         (adsbygoogle = window.adsbygoogle || []).push({});
                     </script>
                 </div>
                 <!-- ads for mobile/tablet screens -->
-                <div class="horizontal-ads col-sm-12 d-sm-block d-md-none">
+                <div id="gpt-ad-small" class="horizontal-ads col-sm-12 d-sm-block d-md-none">
                     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
                     <!-- color-tile-horizontal-ads -->
                     <ins class="adsbygoogle"
                         style="display:block"
                         data-ad-client="ca-pub-8598751574376549"
                         data-ad-slot="5996761391"
-                        data-ad-format="auto"
                         data-full-width-responsive="true"></ins>
                     <script>
                         (adsbygoogle = window.adsbygoogle || []).push({});
@@ -259,7 +272,7 @@
                             </div>
                             
                             <!-- ads for large screens -->
-                            <div class="horizontal-ads d-none col-md-12 d-md-block d-lg-block d-xl-block">
+                            <div id="gpt-ad-small" class="horizontal-ads d-none col-md-12 d-md-block d-lg-block d-xl-block">
                                 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
                                 <!-- color-tile-ads -->
                                 <ins class="adsbygoogle"
@@ -267,6 +280,7 @@
                                     data-ad-client="ca-pub-8598751574376549"
                                     data-ad-slot="6993669367"
                                     data-ad-format="auto"
+                                    data-adtest="on"
                                     data-full-width-responsive="true"></ins>
                                 <script>
                                     (adsbygoogle = window.adsbygoogle || []).push({});
@@ -381,7 +395,7 @@
                     </div>
                 </div>
                 <!-- ads for large screens -->
-                <div class="horizontal-ads d-none col-md-2 d-md-block d-lg-block d-xl-block">
+                <div id="gpt-ad-small" class="horizontal-ads d-none col-md-2 d-md-block d-lg-block d-xl-block">
                     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
                     <!-- color-tile-ads -->
                     <ins class="adsbygoogle"
@@ -389,13 +403,14 @@
                         data-ad-client="ca-pub-8598751574376549"
                         data-ad-slot="6993669367"
                         data-ad-format="auto"
+                        data-adtest="on"
                         data-full-width-responsive="true"></ins>
                     <script>
                         (adsbygoogle = window.adsbygoogle || []).push({});
                     </script>
                 </div>
                 <!-- ads for mobile/tablet screens -->
-                <div class="vertical-ads col-sm-12 d-sm-block d-md-none">
+                <div id="gpt-ad-large" class="vertical-ads col-sm-12 d-sm-block d-md-none">
                     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
                     <!-- color-tile-horizontal-ads -->
                     <ins class="adsbygoogle"

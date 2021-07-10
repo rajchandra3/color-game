@@ -15,12 +15,3 @@
 //     googletag.enableServices();
 // });
 
-
-window.googletag = window.googletag || {cmd: []};
-googletag.cmd.push(function() {
-  googletag
-      .defineSlot(
-          '/6993669367/Travel/Europe/Paris', [300, 250], 'banner-ad')
-      .addService(googletag.pubads());
-  googletag.enableServices();
-});

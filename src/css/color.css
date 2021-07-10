@@ -146,3 +146,6 @@ a:hover{
 *{
     outline: 1px red solid;
 }
+#gpt-ad-large #gpt-ad-small{
+    display: none;
+}
